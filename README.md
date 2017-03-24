@@ -5,14 +5,14 @@ Traženje, rezervacija i plaćanje parking mjesta
 2. Kerim Jamaković
 3. Hamza Zubača
 
-##OPIS TEME
+## OPIS TEME
 TBC
 
-##PROCESI
+## PROCESI
 TBC
 
-##FUNKCIONALNOSTI
+## FUNKCIONALNOSTI
 TBC
 
-##AKTERI
+## AKTERI
 TBC
