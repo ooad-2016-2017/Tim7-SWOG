@@ -1,5 +1,4 @@
-# Tim7-SWOG
-Članovi Tima:
+# spark
 
 1. Lejla Brgulja
 2. Kerim Jamaković
