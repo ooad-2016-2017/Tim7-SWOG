@@ -10,7 +10,7 @@ Spark je programsko rješenje koje će olakšati i ubrzati proces traženja, rez
 
 ## PROCESI
 
-### REGISTRACIJA KORISNIKA
+#### REGISTRACIJA KORISNIKA
 Korisnik upisuje svoje lične podatke, korisničko ime i lozinku, podatke potrebne za elektronsko plaćanje, uplaćuje početni iznos kredita na karticu i dobija informaciju o lokaciji i vremenu preuzimanja kartice.
 
 ### REGISTRACIJA VLASNIKA
