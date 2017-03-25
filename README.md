@@ -35,16 +35,16 @@ Korisnik ulaskom na parking skenira svoju karticu, te se u bazi spašava vrijeme
 Vlasnik na svom računu, u obliku dnevnog izvještaja, raspolaže detaljnim informacijama o finansijskom stanju svakog od parkinga kojim posluje.
 
 ## FUNKCIONALNOSTI
--Mogućnost pravljenja korisničkog računa
--Mogućnost elektronske uplate na parking karticu
--Pronalazak parkinga na mapi
--Uvid u cijene 
--Provjera statusa parkinga (popunjen/slobodan)
--Mogućnost rezervacije mjesta na parkingu
--Mogućnost dolaska na parking i bez predviđene aplikacije / korisničkog računa uz upotrebu jednokratnih parking kartica/listića--
--Mogućnost uvida u poslovanje parkinga
--Uvid u ostvareni profit 
--Izbor jezika (en/bs)
+- Mogućnost pravljenja korisničkog računa
+- Mogućnost elektronske uplate na parking karticu
+- Pronalazak parkinga na mapi
+- Uvid u cijene 
+- Provjera statusa parkinga (popunjen/slobodan)
+- Mogućnost rezervacije mjesta na parkingu
+- Mogućnost dolaska na parking i bez predviđene aplikacije / korisničkog računa uz upotrebu jednokratnih parking kartica/listića--
+- Mogućnost uvida u poslovanje parkinga
+- Uvid u ostvareni profit 
+- Izbor jezika (en/bs)
 
 
 ## AKTERI
