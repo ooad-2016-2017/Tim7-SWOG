@@ -48,8 +48,8 @@ Vlasnik na svom računu, u obliku dnevnog izvještaja, raspolaže detaljnim info
 
 
 ## AKTERI
--Administrator, verifikuje korisničke račune i ima uvid u njih, ažurira aplikaciju.
--Vlasnik, osoba koja može kreirati parking profil i ima uvid u poslovanje istim.
--Korisnik, osoba koja ima mogućnost traženja, rezervacije i plaćanja parkinga preko korisničkog računa.
+- Administrator, verifikuje korisničke račune i ima uvid u njih, ažurira aplikaciju.
+- Vlasnik, osoba koja može kreirati parking profil i ima uvid u poslovanje istim.
+- Korisnik, osoba koja ima mogućnost traženja, rezervacije i plaćanja parkinga preko korisničkog računa.
 
 
