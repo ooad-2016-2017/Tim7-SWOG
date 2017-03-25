@@ -13,25 +13,25 @@ Spark je programsko rješenje koje će olakšati i ubrzati proces traženja, rez
 #### REGISTRACIJA KORISNIKA
 Korisnik upisuje svoje lične podatke, korisničko ime i lozinku, podatke potrebne za elektronsko plaćanje, uplaćuje početni iznos kredita na karticu i dobija informaciju o lokaciji i vremenu preuzimanja kartice.
 
-### REGISTRACIJA VLASNIKA
+#### REGISTRACIJA VLASNIKA
 Vlasnik upisuje svoje lične podatke, korisničko ime, te lozinku, podatke o bankovnom računu kako bi se omogućio direktan transfer novca sa korisničkog na vlasnički račun, prilikom plaćanja parkinga.
 
-### REGISTRACIJA PARKINGA
+#### REGISTRACIJA PARKINGA
 Dodjeljuje se vlasnik, lokacija, broj raspoloživih mjesta, zona parkinga, cijena i radno vrijeme.  
 
-### DOPUNA KREDITA
+#### DOPUNA KREDITA
 Korisnik bira način elektronskog plaćanja (npr. Paypal, pikpay,...), vrši odabir koliko kredita želi kupiti, a zatim se sa njegovog računa skida odabrani iznos. Sa dopunjeim kreditima može koristiti sve parkinge unutar sistema. 
 
-### TRAŽENJE PARKINGA
+#### TRAŽENJE PARKINGA
 Korisnik u aplikaciji otvara mapu na kojoj mu se prikazuju svi parkinzi u blizini. Klikom na neki od parkinga prikazuje mu se status parkinga (broj slobodnih mjesta), zona kojoj pripada te cijena. Odabirom parkinga korisniku se prikazuje put od lokacije na kojoj se nalazi do parkinga kako bi lakše došao do istog.
 
-### REZERVACIJA PARKINGA
+#### REZERVACIJA PARKINGA
 Korisnik vrši odabir parkinga na kojem želi rezervisati mjesto, te odabirom od kada do kada želi rezervirati mjesto vrši rezervaciju istog. Samom potvrdom rezervacije automatski mu se skida obračunati broj kredita za taj određeni period kako bi se izbjegla zloupotreba ove opcije.
 
-### PLAĆANJE PARKINGA
+#### PLAĆANJE PARKINGA
 Korisnik ulaskom na parking skenira svoju karticu, te se u bazi spašava vrijeme kada je on ušao na parking. Prilikom izlaska korisnik opet skenira svoju karticu, te sistem na osnovu vremena ulaska i izlaska obračunava količinu kredita koji će biti skinuti sa kartice.
 
-### UVID U FINANSIJSKO STANJE OD STRANE VLASNIKA
+#### UVID U FINANSIJSKO STANJE OD STRANE VLASNIKA
 Vlasnik na svom računu, u obliku dnevnog izvještaja, raspolaže detaljnim informacijama o finansijskom stanju svakog od parkinga kojim posluje.
 
 ## FUNKCIONALNOSTI
