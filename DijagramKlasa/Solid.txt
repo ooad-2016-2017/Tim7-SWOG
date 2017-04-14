@@ -1,1 +1,4 @@
 
+Princip izoliranja interfejsa ( eng. Interface Segregation Principle-ISP) nije prekrsen. Nas dijagram klasa ne sadrzi nijednu klasu koja ima vise od pet metoda. Sve implementirane metode ce biti upotrebljivane.
+
+Princip inverzije ovisnosti (eng. Dependency Inversion Principle-DIP) nije prekrsen. Jedino klasa Owner nasljedjuje klasu User, medjutim bilo kakve promjene nad klasom User nece negativno utjecati na klasu Owner.
