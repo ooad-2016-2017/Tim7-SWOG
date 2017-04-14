@@ -1,4 +1,9 @@
+S: Princip pojedinačne odgovornosti (eng. Single Responsibility Principle-SRP) je zadovoljen. Razlog ovoga jeste to što imamo nekoliko tipova klasa kao što su klase objekata, klase validatori, klase za rad sa bazom podataka, klase za način plaćanja, te su one unutar sebe podijeljene u ovisnosti od toga kojem objektu služe. (Npr. postoji posebna klasa OwnerDbService čija je namjena specificirana samo za unos, brisanje i ažuriranje vlasnika u bazi, te ta klasa nema nijednu drugu namjenu.) 
 
-Princip izoliranja interfejsa ( eng. Interface Segregation Principle-ISP) nije prekrsen. Nas dijagram klasa ne sadrzi nijednu klasu koja ima vise od pet metoda. Sve implementirane metode ce biti upotrebljivane.
+O: Otvoreno zatvoreni princip (eng. Open Closed Principle-OCP) nije zadovoljen. Klase UserDbService, OwnerDbService i ParkingDbService se direktno bave API-jem baze podataka. Ovo krši otvoreno zatvoren princip zato što promjena na implementaciji navedenih klase može forsirati modifikaciju klasa Parking, Owner i User. Klase Owner, User i Parking su prijelazno vezane na API baze podataka. Naš primjer je jako sličan primjeru kršenja upravo ovog principa. (Predavanje 5.2-SOLID)
 
-Princip inverzije ovisnosti (eng. Dependency Inversion Principle-DIP) nije prekrsen. Jedino klasa Owner nasljedjuje klasu User, medjutim bilo kakve promjene nad klasom User nece negativno utjecati na klasu Owner.
+L: Liskov princip zamjene (eng. Liskov Substitution Principle-LSP) je zadovoljen. Jedino naslijeđivanje u našem dijagramu klasa jeste naslijeđivanje klase Owner iz klase User. Klasa Owner implementira sve naslijeđene metode iz bazne klase, te se njihova implementacija znatno ne razlikuje jer je on u mogućnosti da traži, rezerviše i plati parking, te nadopuni kredite na isti način kao i User. Jedina razlika jeste što klasa Owner ima druge funkcionalnosti koje nisu naslijeđene. 
+
+I: Princip izoliranja interfejsa ( eng. Interface Segregation Principle-ISP) je zadovoljen. Nas dijagram klasa ne sadrzi nijednu klasu koja ima vise od pet metoda. Sve implementirane metode ce biti upotrebljivane.
+
+D: Princip inverzije ovisnosti (eng. Dependency Inversion Principle-DIP) je zadovoljen. Jedino klasa Owner nasljedjuje klasu User, medjutim bilo kakve promjene nad klasom User nece negativno utjecati na klasu Owner.
