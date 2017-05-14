@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,42 +16,35 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Spark
+namespace SPARK
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegistrationWindow : Page
+    public sealed partial class RegistrationDetailsView : Page
     {
-        public RegistrationWindow()
+        public RegistrationDetailsView()
         {
             this.InitializeComponent();
         }
-
         public void Show()
         {
             this.Show();
         }
 
-        private void StackPanelRegistration_Loaded(object sender, RoutedEventArgs e)
-        {
-            //   StackPanelRegistration.Width = this.ActualWidth - 100;
-            //   StackPanelRegistration.Height = this.ActualHeight;
-        }
 
-        private void RegistrationDetailsButton_Loaded(object sender, RoutedEventArgs e)
+        private void SubmitButton_Loaded(object sender, RoutedEventArgs e)
         {
-            RegistrationDetailsButton.Width = this.ActualWidth;
+            SubmitButton.Width = this.ActualWidth;
         }
 
 
 
-        private void RegistrationDetailsButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegistrationWindowDetails));
+            var dialog = new MessageDialog("Vaš korisnički račun je uspješno kreiran!");
+            dialog.Commands.Add(new UICommand { Label = "Ok" });
+            await dialog.ShowAsync();
         }
-
-
     }
 }
