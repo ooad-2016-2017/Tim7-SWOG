@@ -1,0 +1,6 @@
+﻿
+O: Otvoreno zatvoreni princip (eng. Open Closed Principle-OCP) nije zadovoljen. 
+Klase UserDbService, OwnerDbService i ParkingDbService se direktno bave API-jem baze podataka. 
+Ovo krši otvoreno zatvoren princip zato što promjena na implementaciji navedenih klase može forsirati modifikaciju 
+klasa Parking, Owner i User. Klase Owner, User i Parking su prijelazno vezane na API baze podataka. 
+Naš primjer je jako sličan primjeru kršenja upravo ovog principa. (Predavanje 5.2-SOLID)
