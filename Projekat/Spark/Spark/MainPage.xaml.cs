@@ -53,6 +53,7 @@ namespace SPARK
         {
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(RegistrationTypeView));
+//            Frame.Navigate(typeof(RegisterParkingView)); ako zelite testirati registraciju parkinga  onda samo ovu liniju stavite umjesto ove iznad
         }
 
 
