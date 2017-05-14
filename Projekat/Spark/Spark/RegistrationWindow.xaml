@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="Spark.RegistrationWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Spark"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#0280B0" Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" Background="White">
+            <Grid Name="Grid123" Height="30" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border BorderBrush="#1F97BF" BorderThickness="0" Background="#3DACCE"  Grid.Column="0" Grid.Row="0">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" >ODABIR VRSTE RAČUNA</TextBlock>
+                </Border>
+                <Border BorderBrush="Red" BorderThickness="0" Background="#1F97BF"  Grid.Column="1" Grid.Row="0">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">UNOS PODATAKA</TextBlock>
+                </Border>
+            </Grid>
+            <Grid Margin="0,50,0,50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" Foreground="#181C21">KORISNIK</TextBlock>
+                    <RichTextBlock HorizontalAlignment="Center" Foreground="#181C21" Padding="20,0,20,0">
+                        <Paragraph>Napravite korisnički račun i koristite usluge SPARK aplikacije. Korisnici mogu tražiti i rezervisati parking.</Paragraph>
+                    </RichTextBlock>
+                    <RadioButton Name="CreateUser" Margin="0,30,0,0" HorizontalAlignment="Center" Foreground="#181C21">NAPRAVI KORISNIČKI RAČUN</RadioButton>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" Foreground="#181C21">VLASNIK</TextBlock>
+                    <RichTextBlock HorizontalAlignment="Center" Foreground="#181C21" Padding="20,0,20,0">
+                        <Paragraph>Napravite vlasnički račun i koristite usluge SPARK aplikacije. Vlasnici mogu tražiti i rezervisati parking, ali i kreirati svoj parking, voditi evidenciju o profitu i zaraditi novac.</Paragraph>
+                    </RichTextBlock>
+                    <RadioButton Name="CreateOwner" Margin="0,30,0,0" HorizontalAlignment="Center" Foreground="#181C21">NAPRAVI VLASNIČKI RAČUN</RadioButton>
+                </StackPanel>
+            </Grid>
+            <Button Name="RegistrationDetailsButton"  Content="UNESI PODATKE" Background="#F94E49" Foreground="White" HorizontalAlignment="Center" Loaded="RegistrationDetailsButton_Loaded" Click="RegistrationDetailsButton_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
