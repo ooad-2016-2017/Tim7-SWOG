@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="Test_popup.MainPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Test_popup"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.RowSpan="10" Fill="#3DACCE"></Rectangle>
+            <Button x:Name="button" FontSize="50" Content="Rezervisi" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6"  Background="#181C21" Foreground="#FFFFFA"/>
+            <Button x:Name="button1" FontSize="50" Content="Odustani" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="8"  Background="#0081AF" Foreground="#FFFFFA"/>
+           
+            <DatePicker Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" ></DatePicker>
+            <DatePicker Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF"></DatePicker>
+            <TextBlock Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="                        Potrebno kredita za rezervaciju: " FontSize="50" Foreground="#FFFFFA" ></TextBlock>
+            <TextBlock Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="                               11 SPARK KREDITA " FontSize="50" Foreground="#FFFFFA" ></TextBlock>
+
+        </Grid>
+    </Grid>
+</Page>
