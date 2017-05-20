@@ -44,15 +44,18 @@ namespace SPARK
         }
         private void rezervisiMjesto_Click(object sender, RoutedEventArgs e)
         {
-            pretraga.Text = "rezervisi mjesto";
+            Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(BookParkingView));
         }
         private void kupiKredite_Click(object sender, RoutedEventArgs e)
         {
-            pretraga.Text = "kupi kredite";
+            Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(BuyCreditsView));
         }
         private void izmjena_Click(object sender, RoutedEventArgs e)
         {
             pretraga.Text = "izmjena";
         }
+
     }
 }

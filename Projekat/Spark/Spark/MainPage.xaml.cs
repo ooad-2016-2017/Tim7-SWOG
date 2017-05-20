@@ -78,6 +78,7 @@ namespace SPARK
         {
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(UserView));
+            
         }
     }
 }

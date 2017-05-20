@@ -24,11 +24,20 @@
                              
                                      />
         <!--Second Child-->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <Button Name="SeekParkingButton" Content="TRAZI PARKING" Background="#FE4E47" Foreground="White" Margin="0,5,0,5" Loaded="SeekParkingButton_Loaded" Click="SeekParkingButton_Click" />
-            <Button Name="LoginButton"  Content="LOGIN" Background="#0084A7" Margin="0,5,0,5" Foreground="White" Loaded="LoginButton_Loaded" Click="LoginButton_Click"/>
-            <Button Name="RegisterButton"  Content="REGISTRUJ SE" Background="#3AAECB" Foreground="White" Margin="0,5,0,5" Loaded="RegisterButton_Loaded" Click="RegisterButton_Click"/>
-        </StackPanel>
+        
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Name="SeekParkingButton" Grid.Row="0" Content="TRAZI PARKING" Background="#FE4E47" Foreground="White" Margin="0,5,0,5" Loaded="SeekParkingButton_Loaded" Click="SeekParkingButton_Click" />
+            <Button Name="LoginButton"  Grid.Row="1" Content="LOGIN" Background="#0084A7" Margin="0,5,0,5" Foreground="White" Loaded="LoginButton_Loaded" Click="LoginButton_Click"/>
+            <Button Name="RegisterButton"  Grid.Row="2" Content="REGISTRUJ SE" Background="#3AAECB" Foreground="White" Margin="0,5,0,5" Loaded="RegisterButton_Loaded" Click="RegisterButton_Click"/>
+        </Grid>
         <Popup x:Name="ppup" IsOpen="False" IsLightDismissEnabled="True" Grid.Column="0" HorizontalAlignment="Stretch" Height="220"  >
             <Popup.ChildTransitions>
                 <TransitionCollection>

@@ -8,46 +8,65 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#0280B0" Margin="0,0,0,0" Padding="0,20,0,20">
+    <Grid Background="#0081AF" Margin="0,0,0,0" Padding="0,20,0,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Background="White"  >
+
+        <Grid Background="#FFFFFA"  Grid.Row="1" Grid.Column="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="25*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"  Margin="0,0,0,0" Background="White" Padding="50,0,50,0">
-                <TextBlock Name="TextBlockName"  Text="Naziv parkinga:" Margin="0,40,0,0"></TextBlock>
-                <TextBox Name="TextBoxName"></TextBox>
-                <TextBlock Name="TextBlockParkingZone" Text="Parking zona:" Margin="0,10,0,0"></TextBlock>
-                <TextBox Name="TextBoxParkingZone"></TextBox>
-                <TextBlock Name="TextBlockPrice" Text="Cijena po satu:" Margin="0,10,0,0"></TextBlock>
-                <TextBox Name="TextBoxPrice" />
-                <TextBlock Name="TextBlockAddress" Text="Adresa:" Margin="0,10,0,0"></TextBlock>
-                <TextBox Name="TextBoxAddress" />
-                <TextBlock Name="TextBlockEmailWorkingHours" Text="Radno vrijeme:" Margin="0,10,0,0"></TextBlock>
-                <TextBox Name="TextBoxEmailxWorkingHours" Margin="0,0,0,40"/>
-                <Button Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Center" Loaded="SubmitButton_Loaded" Click="SubmitButton_Click"/>
-            </StackPanel>
-            <StackPanel  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0" Background="White" Padding="50,0,50,0">
-                <Border Grid.Row="1" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="200" Height="32" MinHeight="30" Background="White">
-                    <TextBox x:Name="SearchTextBox" Text="Search" Foreground="LightGray" Margin="30,0,10,8" BorderBrush="White" Padding="10,0,0,0" />
-                </Border>
-                <maps:MapControl x:Name="myMap" Height="350" Margin="0,10,0,0"
+            <maps:MapControl x:Name="myMap" Grid.Column="1" Grid.Row="1"
                                      ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
                                      Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
                                      DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
                                      Loaded="myMap_Loaded"
                                      />
-                <Button Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Center" Loaded="PickLocationButton_Loaded"/>
-            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="2" Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Loaded="PickLocationButton_Loaded"/>
+            <Grid Grid.Column="3" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Name="TextBlockName"  Text="Naziv parkinga:" ></TextBlock>
+                <TextBox Grid.Row="1" Name="TextBoxName"></TextBox>
+                <TextBlock Grid.Row="2" Name="TextBlockParkingZone" Text="Parking zona:" ></TextBlock>
+                <TextBox Grid.Row="3" Name="TextBoxParkingZone"></TextBox>
+                <TextBlock Grid.Row="4" Name="TextBlockPrice" Text="Cijena po satu:" ></TextBlock>
+                <TextBox Grid.Row="5" Name="TextBoxPrice" />
+                <TextBlock Grid.Row="6" Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
+                <TextBox Grid.Row="7" Name="TextBoxAddress" />
+                <TextBlock Grid.Row="8" Name="TextBlockEmailWorkingHours" Text="Radno vrijeme:" ></TextBlock>
+                <TextBox Grid.Row="9" Name="TextBoxEmailxWorkingHours" />
+            </Grid>
+            <Button Grid.Column="3" Grid.Row="2" Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Click="SubmitButton_Click"/>
         </Grid>
         
 
