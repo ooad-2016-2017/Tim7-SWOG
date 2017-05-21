@@ -40,7 +40,7 @@ namespace SPARK
         }
         private void registrujSe_Click(object sender, RoutedEventArgs e)
         {
-            pretraga.Text = "registruj se";
+           
         }
         private void rezervisiMjesto_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +54,7 @@ namespace SPARK
         }
         private void izmjena_Click(object sender, RoutedEventArgs e)
         {
-            pretraga.Text = "izmjena";
+            
         }
 
         private void PinButton_Click(object sender, RoutedEventArgs e)
