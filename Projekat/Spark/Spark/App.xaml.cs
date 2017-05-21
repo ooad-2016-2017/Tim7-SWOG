@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,22 +16,33 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 namespace SPARK
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    sealed partial class App : Application
+
+
+/// <summary>
+/// Provides application-specific behavior to supplement the default Application class.
+/// </summary>
+sealed partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
+
+/// <summary>
+/// Initializes the singleton application object.  This is the first line of authored code
+/// executed, and as such is the logical equivalent of main() or WinMain().
+/// </summary>
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            using (var db = new SPARK.Model.SPARKDbContext())
+            {
+                db.Database.ApplyMigrations();
+                SPARK.Model.DefaultPodaci.Initialize(db);
+            }
         }
+
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

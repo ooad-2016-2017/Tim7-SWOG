@@ -13,7 +13,7 @@ namespace SPARK.Model
         public DbSet<User> User { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
-
+        public SPARKDbContext() { }
 
         //Metoda koja će promijeniti konfiguraciju i odrediti gdje se spašava klasa i kako se zove.
         //Ovisno od uređaja spasiti će se na različite lokacije, za desktop se kreira poseban folder u AppData/Local Folderu od korisnika
