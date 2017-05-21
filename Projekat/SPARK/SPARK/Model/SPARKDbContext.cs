@@ -1,10 +1,6 @@
 ﻿using Microsoft.Data.Entity;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace SPARK.Model
@@ -12,10 +8,10 @@ namespace SPARK.Model
     public class SPARKDbContext : DbContext
     {
         //Svi restorani koji su u tabeli se dobijaju iz ovog seta
-        public DbSet<Parking> Parkings { get; set; }
-        public DbSet<Owner> Owner { get; set; }
+        //public DbSet<Parking> Parkings { get; set; }
+        //public DbSet<Owner> Owner { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        //public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
 
 
@@ -28,30 +24,19 @@ namespace SPARK.Model
             try
             {
                 //za tačnu putanju gdje se nalazi baza uraditi ovdje debug i procitati Path
-                databaseFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, databaseFilePath);
+                databaseFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path,
+                databaseFilePath);
             }
             catch (InvalidOperationException) { }
             //Sqlite baza
             optionsBuilder.UseSqlite($"Data source={databaseFilePath}");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Parking>().Property()
-
-
-
-                  modelBuilder.Entity<Publisher>().HasKey(p => p.PublisherId);
-            modelBuilder.Entity<Publisher>().Property(c => c.PublisherId)
-                   .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<Book>().HasKey(b => b.BookId);
-            modelBuilder.Entity<Book>().Property(b => b.BookId)
-                  .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<Book>().HasRequired(p => p.Publisher)
-                  .WithMany(b => b.Books).HasForeignKey(b => b.PublisherId);
-            base.OnModelCreating(modelBuilder);
-
         }
     }
+
+
 }
-}
+
+
