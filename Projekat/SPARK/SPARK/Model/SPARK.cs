@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SPARK.Model
 {
@@ -10,7 +9,7 @@ namespace SPARK.Model
     {
         protected List<Parking> parkingList;
         protected List<User> userList;
-        protected PaymentManager paymentManager;
+    //    protected PaymentManager paymentManager;
 
         protected bool reserveParking()
         {
