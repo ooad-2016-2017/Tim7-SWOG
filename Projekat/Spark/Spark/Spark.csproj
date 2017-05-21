@@ -109,6 +109,7 @@
       <DependentUpon>20170521174454_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SPARKDbContextModelSnapshot.cs" />
+    <Compile Include="Model\DefaultPodaci.cs" />
     <Compile Include="Model\Owner.cs" />
     <Compile Include="Model\Parking.cs" />
     <Compile Include="Model\PaymentMethod.cs" />

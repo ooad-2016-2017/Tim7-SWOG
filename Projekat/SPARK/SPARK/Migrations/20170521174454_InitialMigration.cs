@@ -13,8 +13,8 @@ namespace SPARKMigrations
                 name: "Owner",
                 columns: table => new
                 {
-                    Id = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column(type: "INTEGER", nullable: false),
+//                        .Annotation("Sqlite:Autoincrement", true),
                     Email = table.Column(type: "TEXT", nullable: true),
                     Name = table.Column(type: "TEXT", nullable: true),
                     Password = table.Column(type: "TEXT", nullable: true),
@@ -29,8 +29,8 @@ namespace SPARKMigrations
                 name: "Parking",
                 columns: table => new
                 {
-                    Id = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column(type: "INTEGER", nullable: false),
+//                        .Annotation("Sqlite:Autoincrement", true),
                     Address = table.Column(type: "TEXT", nullable: true),
                     Capacity = table.Column(type: "INTEGER", nullable: false),
                     CoordX = table.Column(type: "REAL", nullable: false),
@@ -51,8 +51,8 @@ namespace SPARKMigrations
                 name: "PaymentMethod",
                 columns: table => new
                 {
-                    Id = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column(type: "INTEGER", nullable: false),
+//                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column(type: "TEXT", nullable: true),
                     Name = table.Column(type: "TEXT", nullable: true)
                 },
@@ -64,8 +64,8 @@ namespace SPARKMigrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column(type: "INTEGER", nullable: false),
+               //         .Annotation("Sqlite:Autoincrement", true),
                     Email = table.Column(type: "TEXT", nullable: true),
                     Name = table.Column(type: "TEXT", nullable: true),
                     Password = table.Column(type: "TEXT", nullable: true),
