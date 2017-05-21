@@ -46,14 +46,41 @@ namespace SPARK
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new MessageDialog("Vaš korisnički račun je uspješno kreiran!");
-            dialog.Commands.Add(new UICommand { Label = "Ok" });
-            await dialog.ShowAsync();
+            using (var db = new SPARK.Model.SPARKDbContext())
+            {
+                var parking = new SPARK.Model.Parking
+                {
+                    Name = TextBoxName.Text,
+                    Zone = Convert.ToInt16(TextBoxParkingZone.Text),
+                    Price = Convert.ToDouble(TextBoxPrice.Text),
+                    Address = TextBoxAddress.Text,
+                    WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime("1.1.2017"), Convert.ToDateTime("5.2.2017"))
+            };
+                db.Parkings.Add(parking);
+                db.SaveChanges();
+
+                TextBoxName.Text = string.Empty;
+                TextBoxParkingZone.Text = string.Empty;
+                TextBoxPrice.Text = string.Empty;
+                TextBoxAddress.Text = string.Empty;
+
+
+            }
         }
 
         private void PickLocationButton_Loaded(object sender, RoutedEventArgs e)
         {
             PickLocationButton.Width = this.ActualWidth;
+        }
+        private void ReturnToMainPage()
+        {
+            var messageDialog = new Windows.UI.Popups.MessageDialog("Uspješno registrovan parking. Povratak na početnu stranicu.");
+
+            messageDialog.Commands.Add(new UICommand("Yes", (command) =>
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                Frame.Navigate(typeof(RegistrationDetailsView));
+            }));
         }
     }
 }
