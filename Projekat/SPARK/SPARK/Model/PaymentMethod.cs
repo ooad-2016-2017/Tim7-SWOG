@@ -14,7 +14,7 @@ namespace SPARK.Model
         private int id;
         private string name;
         private string description;
-        private List<Tuple<int, double>> packages;
+        private List<KeyValuePair<int, double>> packages;
 
         public int Id
         {
@@ -55,7 +55,7 @@ namespace SPARK.Model
             }
         }
 
-        public List<Tuple<int, double>> Packages
+        public List<KeyValuePair<int, double>> Packages
         {
             get
             {

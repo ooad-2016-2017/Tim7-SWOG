@@ -8,10 +8,10 @@ namespace SPARK.Model
     public class SPARKDbContext : DbContext
     {
         //Svi restorani koji su u tabeli se dobijaju iz ovog seta
-        //public DbSet<Parking> Parkings { get; set; }
-        //public DbSet<Owner> Owner { get; set; }
+        public DbSet<Parking> Parkings { get; set; }
+        public DbSet<Owner> Owner { get; set; }
         public DbSet<User> User { get; set; }
-        //public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
 
 
