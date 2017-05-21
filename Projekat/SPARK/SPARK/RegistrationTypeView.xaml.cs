@@ -37,12 +37,13 @@ namespace SPARK
             RegistrationDetailsButton.Width = this.ActualWidth;
         }
 
-
-
         private void RegistrationDetailsButton_Click(object sender, RoutedEventArgs e)
         {
+            bool x = (bool)CreateUser.IsChecked;
             Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegistrationDetailsView));
+            Frame.Navigate(typeof(RegistrationDetailsView), x);
         }
+
+      
     }
 }
