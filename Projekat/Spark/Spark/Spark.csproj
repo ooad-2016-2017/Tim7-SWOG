@@ -105,14 +105,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Owner.cs" />
-    <Compile Include="Model\OwnerDbContext.cs" />
     <Compile Include="Model\Parking.cs" />
-    <Compile Include="Model\ParkingDbContext.cs" />
     <Compile Include="Model\PaymentMethod.cs" />
-    <Compile Include="Model\PaymentMethodDbContext.cs" />
     <Compile Include="Model\SPARK.cs" />
+    <Compile Include="Model\SPARKDbContext.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserDbContext.cs" />
     <Compile Include="Model\PaymentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterParkingView.xaml.cs">
