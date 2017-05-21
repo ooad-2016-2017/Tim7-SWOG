@@ -38,7 +38,7 @@
                                      DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
                                      Loaded="myMap_Loaded"
                                      />
-            <Button Grid.Column="1" Grid.Row="2" Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Loaded="PickLocationButton_Loaded"/>
+            <Button Grid.Column="1" Grid.Row="2" Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" />
             <Grid Grid.Column="3" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

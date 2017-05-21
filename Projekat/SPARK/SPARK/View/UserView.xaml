@@ -8,20 +8,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#181C21">
+    <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
+            CompactPaneLength="0" OpenPaneLength="250" PanePlacement="Right">
+        <SplitView.Pane>
+            <ListView Background="#0081AF">
+                
+            </ListView>
+        </SplitView.Pane>
+        <SplitView.Content>
+
+            <Grid Background="#181C21">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*" />
+            <RowDefinition Height="0.08*" />
             <RowDefinition Height="0.635*" />
             <RowDefinition Height="0.255*" />
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="0.4*" />
             <ColumnDefinition Width="0.3*" />
         </Grid.ColumnDefinitions>
-       
 
+        <Button Name="PinButton"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Click="PinButton_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Assets/crveniPin.png" ></Image>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        
+        <Button Grid.Column="2" Grid.Row="0" Background="#181C21" Foreground="Gray" Content="Uredi profil" FontSize="12" HorizontalAlignment="Left" HorizontalContentAlignment="Center" ></Button>
         <maps:MapControl x:Name="myMap" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                      ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
                                      Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
@@ -162,5 +178,8 @@
 
         
 
-    </Grid>
+         </Grid>
+
+        </SplitView.Content>
+    </SplitView>
 </Page>

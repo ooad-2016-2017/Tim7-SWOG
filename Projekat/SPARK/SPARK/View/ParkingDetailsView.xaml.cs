@@ -16,14 +16,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SPARK
+namespace SPARK.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UserView : Page
+    public sealed partial class ParkingDetailsView : Page
     {
-        public UserView()
+        public ParkingDetailsView()
         {
             this.InitializeComponent();
             myMap.MapServiceToken = "laUq6i4377dfOIVIHYEI~T_8vyIA3sznxgRSix8_JFw~AvZvd6to90gmNls6DvTMFLuiu_ekbhwYin_dmDs9lqGpvqgeaCCf6mtqNdXkVKmP";
@@ -35,10 +35,8 @@ namespace SPARK
             myMap.ZoomLevel = 14;
             //ovisno o validaciji treba ovdje da se postavi visibility redom: registrujSe, rezervisiMjesto, kupiKredite, izmjena
         }
-        private void rezervisiMjesto_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-        private void registrujSe_Click(object sender, RoutedEventArgs e)
+
+        private void urediParking_Click(object sender, RoutedEventArgs e)
         {
             pretraga.Text = "registruj se";
         }
@@ -56,6 +54,5 @@ namespace SPARK
         {
             pretraga.Text = "izmjena";
         }
-
     }
 }

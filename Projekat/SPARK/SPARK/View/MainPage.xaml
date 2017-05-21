@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="SPARK.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SPARK"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d">
+
+    <Grid Background="#191D20" SizeChanged="Grid_SizeChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--First Child-->
+        <maps:MapControl x:Name="myMap" Grid.Row="0" Grid.Column="0" Margin="0,20,0,25"
+                                     ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
+                                     Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
+                                     DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
+                                     Loaded="myMap_Loaded"
+                             
+                                     />
+        <!--Second Child-->
+        
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Name="SeekParkingButton" Grid.Row="0" Content="TRAZI PARKING" Background="#FE4E47" Foreground="White" Margin="0,5,0,5" Loaded="SeekParkingButton_Loaded" Click="SeekParkingButton_Click" />
+            <Button Name="LoginButton"  Grid.Row="1" Content="LOGIN" Background="#0084A7" Margin="0,5,0,5" Foreground="White" Loaded="LoginButton_Loaded" Click="LoginButton_Click"/>
+            <Button Name="RegisterButton"  Grid.Row="2" Content="REGISTRUJ SE" Background="#3AAECB" Foreground="White" Margin="0,5,0,5" Loaded="RegisterButton_Loaded" Click="RegisterButton_Click"/>
+        </Grid>
+        <Popup x:Name="ppup" IsOpen="False" IsLightDismissEnabled="True" Grid.Column="0" HorizontalAlignment="Stretch" Height="220"  >
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <!--<EdgeUIThemeTransition Edge="Left" />-->
+                    <PaneThemeTransition Edge="Top" />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Height="220" Background="#0280B0"  >
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="0,5,0,5" Padding="10,0,10,0">
+                        <TextBlock Name="TextBlockUsername1" Text="Username:" Foreground="White" Margin="0,10,0,0"></TextBlock>
+                        <TextBox Name="TextBoxUsername1" Background="White" />
+                        <TextBlock Name="TextBlockPassword1" Text="Password:" Foreground="White" Margin="0,10,0,0"></TextBlock>
+                        <TextBox Name="TextBoxPassword1" Background="White" />
+                    </StackPanel>
+                    <Button Name="PotvrdiButton" HorizontalAlignment="Center" Content="POTVRDI" Background="#3AAECB" Foreground="White" Margin="0,10,0,0" Loaded="PotvrdiButton_Loaded" ></Button>
+                </StackPanel>
+            </Grid>
+        </Popup>
+
+    </Grid>
+</Page>

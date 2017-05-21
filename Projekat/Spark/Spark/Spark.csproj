@@ -95,13 +95,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BookParkingView.xaml.cs">
+    <Compile Include="View\BookParkingView.xaml.cs">
       <DependentUpon>BookParkingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BuyCreditsView.xaml.cs">
+    <Compile Include="View\BuyCreditsView.xaml.cs">
       <DependentUpon>BuyCreditsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20170521174454_InitialMigration.cs" />
@@ -118,16 +118,19 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\PaymentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterParkingView.xaml.cs">
+    <Compile Include="View\ParkingDetailsView.xaml.cs">
+      <DependentUpon>ParkingDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterParkingView.xaml.cs">
       <DependentUpon>RegisterParkingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationDetailsView.xaml.cs">
+    <Compile Include="View\RegistrationDetailsView.xaml.cs">
       <DependentUpon>RegistrationDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationTypeView.xaml.cs">
+    <Compile Include="View\RegistrationTypeView.xaml.cs">
       <DependentUpon>RegistrationTypeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserView.xaml.cs">
+    <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -138,6 +141,8 @@
     <None Include="SPARK_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\crniPin.png" />
+    <Content Include="Assets\crveniPin.png" />
     <Content Include="Assets\sat.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -153,27 +158,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="BookParkingView.xaml">
+    <Page Include="View\BookParkingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BuyCreditsView.xaml">
+    <Page Include="View\BuyCreditsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RegisterParkingView.xaml">
+    <Page Include="View\ParkingDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationDetailsView.xaml">
+    <Page Include="View\RegisterParkingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationTypeView.xaml">
+    <Page Include="View\RegistrationDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegistrationTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,7 +190,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserView.xaml">
+    <Page Include="View\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

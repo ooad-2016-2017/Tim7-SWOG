@@ -37,14 +37,8 @@ namespace SPARK
             myMap.ZoomLevel = 14;
         }
 
-        private void SubmitButton_Loaded(object sender, RoutedEventArgs e)
-        {
-            SubmitButton.Width = this.ActualWidth;
-        }
 
-
-
-        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new SPARK.Model.SPARKDbContext())
             {

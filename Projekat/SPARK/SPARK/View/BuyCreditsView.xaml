@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="SPARK.BuyCreditsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SPARK"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+        <Grid Background="#181C21">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle Fill="#0081AF"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+            <Rectangle Fill="#3DACCE"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+            <Rectangle Fill="#FFFFFA"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" />
+            <Rectangle Fill="#181C21"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" />
+            <Viewbox Grid.Row="0" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
+                <TextBlock Text="BROJ $PARK KREDITA" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Viewbox>
+            <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
+                <TextBlock Text="21,3"  Foreground="White" VerticalAlignment="Stretch" HorizontalAlignment="Center"  />
+            </Viewbox>
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FE4A49" Foreground="#FFFFFA" />
+                <Button Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="KUPI"  Background="#0081AF" Foreground="#FFFFFA"/>
+            <RichTextBlock  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Foreground="Black">
+                <Paragraph>"Kupljenim kreditima cete moci placati parking na svim SPARK parkinzima"</Paragraph>
+            </RichTextBlock>
+            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Background="#0081AF" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  />
+                <Button Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Potvrdi"  Background="#181C21" Foreground="#FFFFFA" />
+            </Grid>
+
+            <Button x:Name="BackToPrevious" Grid.Row="3" Grid.Column="1" Visibility="Visible" Click="BackToPrevious_Click"  Foreground="White" Background="#181C21" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <Viewbox Stretch="Uniform">
+                            <TextBlock>Nazad</TextBlock>
+                        </Viewbox>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+    </Grid>
+
+</Page>
