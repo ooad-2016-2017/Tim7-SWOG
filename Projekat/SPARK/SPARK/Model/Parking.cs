@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SPARK.Model
 {
     public class Parking
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         protected int id;
         protected string address;
         protected string name;
