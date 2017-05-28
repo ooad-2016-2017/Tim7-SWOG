@@ -153,6 +153,7 @@
     <Content Include="Assets\bijeliPin.png" />
     <Content Include="Assets\crniPin.png" />
     <Content Include="Assets\crveniPin.png" />
+    <Content Include="Assets\crveniPinmali.png" />
     <Content Include="Assets\sat.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

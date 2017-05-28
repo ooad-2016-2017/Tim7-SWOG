@@ -67,7 +67,7 @@ namespace SPARK
             MapIcon mapIcon1 = new MapIcon();
             mapIcon1.ZIndex = 0;
             mapIcon1.Image =
-                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPin.png"));
+                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
             Geopoint snPoint = pos.Coordinate.Point;
             mapIcon1.Location = snPoint;
             mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
@@ -107,7 +107,7 @@ namespace SPARK
                     MapIcon mapIcon1 = new MapIcon();
                     mapIcon1.ZIndex = 0;
                     mapIcon1.Image =
-                        RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPin.png"));        
+                        RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));        
                     BasicGeoposition snPosition = new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY };
                     Geopoint snPoint = new Geopoint(snPosition);
                     mapIcon1.Location = snPoint;
@@ -181,5 +181,11 @@ namespace SPARK
             Frame.Navigate(typeof(View.EditUserView));
         }
 
+        private void AddParkingButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(RegisterParkingView));
+
+        }
     }
 }
