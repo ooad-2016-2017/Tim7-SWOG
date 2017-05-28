@@ -5,25 +5,30 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using SPARK.ViewModel;
+using SPARK.Model;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Core;
+using Windows.UI.Popups;
+using Microsoft.Data.Entity;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SPARK
+namespace SPARK.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegistrationTypeView : Page
+    public sealed partial class EditUserView : Page
     {
-        public RegistrationTypeView()
+
+        public EditUserView()
         {
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
@@ -34,6 +39,8 @@ namespace SPARK
                     a.Handled = true;
                 }
             };
+            DataContext = new UserViewModel();
+            NavigationCacheMode = NavigationCacheMode.Required;
             this.InitializeComponent();
         }
         public void Show()
@@ -41,19 +48,30 @@ namespace SPARK
             this.Show();
         }
 
-
-        private void RegistrationDetailsButton_Loaded(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationDetailsButton.Width = this.ActualWidth;
+
+            using (var db = new SPARKDbContext())
+            {
+                int trazeni_id = 6;
+                var u = db.User.Where(b => b.Id == trazeni_id).FirstOrDefault();
+                db.Database.ExecuteSqlCommand("delete from User where id=" + trazeni_id.ToString());
+                u.Name = TextBoxName.Text;
+                u.Surname = TextBoxSurname.Text;
+                u.Password = TextBoxPassword.Text;
+                u.Username = TextBoxUsername.Text;
+                u.Email = TextBoxEmail.Text;
+
+                db.User.Add(u);
+                db.SaveChanges();
+            }
+
+
+            var dialog = new MessageDialog("Vaš korisnički račun je uspješno izmijenjen!");
+            dialog.Commands.Add(new UICommand { Label = "Ok" });
+            await dialog.ShowAsync();
         }
 
-        private void RegistrationDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool x = (bool)CreateUser.IsChecked;
-            Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegistrationDetailsView), x);
-        }
 
-      
     }
 }

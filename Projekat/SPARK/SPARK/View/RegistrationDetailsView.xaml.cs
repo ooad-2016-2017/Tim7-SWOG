@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SPARK.ViewModel;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,7 +29,16 @@ namespace SPARK
         bool isUser;
         public RegistrationDetailsView()
         {
-            //isUser = true;
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
+            {
+                if (Frame.CanGoBack)
+                {
+                    Frame.GoBack();
+                    a.Handled = true;
+                }
+            };
+            NavigationCacheMode = NavigationCacheMode.Required;
             this.InitializeComponent();
         }
         public void Show()
@@ -37,12 +48,9 @@ namespace SPARK
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             isUser = (bool)e.Parameter;
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             this.InitializeComponent();
-        }
-
-        private void SubmitButton_Loaded(object sender, RoutedEventArgs e)
-        {
-            SubmitButton.Width = this.ActualWidth;
         }
 
 
@@ -88,5 +96,7 @@ namespace SPARK
             dialog.Commands.Add(new UICommand { Label = "Ok" });
             await dialog.ShowAsync();
         }
+
+
     }
 }

@@ -95,11 +95,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\INavigationService.cs" />
+    <Compile Include="Helper\NavigationService.cs" />
+    <Compile Include="Helper\RelayCommand.cs" />
+    <Compile Include="ViewModel\OwnerViewModel.cs" />
+    <Compile Include="ViewModel\ParkingViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\BookParkingView.xaml.cs">
       <DependentUpon>BookParkingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BuyCreditsView.xaml.cs">
       <DependentUpon>BuyCreditsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUserView.xaml.cs">
+      <DependentUpon>EditUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -141,6 +150,7 @@
     <None Include="SPARK_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bijeliPin.png" />
     <Content Include="Assets\crniPin.png" />
     <Content Include="Assets\crveniPin.png" />
     <Content Include="Assets\sat.png" />
@@ -165,6 +175,10 @@
     <Page Include="View\BuyCreditsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EditUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
