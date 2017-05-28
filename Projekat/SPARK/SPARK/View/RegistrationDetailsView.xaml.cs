@@ -57,46 +57,53 @@ namespace SPARK
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new SPARKDbContext())
+            try
             {
-                var user = new User();
-                if (isUser)
+                using (var db = new SPARKDbContext())
                 {
-                    user = new User
+                    var user = new User();
+                    if (isUser)
                     {
-                        Name = TextBoxName.Text.ToString(),
-                        Surname = TextBoxSurname.Text.ToString(),
-                        Username = TextBoxUsername.Text.ToString(),
-                        Password = TextBoxPassword.Text.ToString(),
-                        Email = TextBoxEmail.Text.ToString()
-                    };
-                }
-                else
-                {
-                    user = new Owner
+                        user = new User
+                        {
+                            Name = TextBoxName.Text.ToString(),
+                            Surname = TextBoxSurname.Text.ToString(),
+                            Username = TextBoxUsername.Text.ToString(),
+                            Password = TextBoxPassword.Text.ToString(),
+                            Email = TextBoxEmail.Text.ToString()
+                        };
+                    }
+                    else
                     {
-                        Name = TextBoxName.Text.ToString(),
-                        Surname = TextBoxSurname.Text.ToString(),
-                        Username = TextBoxUsername.Text.ToString(),
-                        Password = TextBoxPassword.Text.ToString(),
-                        Email = TextBoxEmail.Text.ToString()
-                    };
-                }
+                        user = new Owner
+                        {
+                            Name = TextBoxName.Text.ToString(),
+                            Surname = TextBoxSurname.Text.ToString(),
+                            Username = TextBoxUsername.Text.ToString(),
+                            Password = TextBoxPassword.Text.ToString(),
+                            Email = TextBoxEmail.Text.ToString()
+                        };
+                    }
 
-                db.User.Add(user);
-                db.SaveChanges();
+                    db.User.Add(user);
+                    db.SaveChanges();
+                }
+                TextBoxName.Text = string.Empty;
+                TextBoxSurname.Text = string.Empty;
+                TextBoxUsername.Text = string.Empty;
+                TextBoxPassword.Text = string.Empty;
+                TextBoxEmail.Text = string.Empty;
+
+                var dialog = new MessageDialog("Vaš korisnički račun je uspješno kreiran!");
+                dialog.Commands.Add(new UICommand { Label = "Ok" });
+                await dialog.ShowAsync();
             }
-            TextBoxName.Text = string.Empty;
-            TextBoxSurname.Text = string.Empty;
-            TextBoxUsername.Text = string.Empty;
-            TextBoxPassword.Text = string.Empty;
-            TextBoxEmail.Text = string.Empty;
-
-            var dialog = new MessageDialog("Vaš korisnički račun je uspješno kreiran!");
-            dialog.Commands.Add(new UICommand { Label = "Ok" });
-            await dialog.ShowAsync();
+            catch (Exception izuzetak)
+            {
+                var dialog1 = new MessageDialog(izuzetak.Message);
+                dialog1.Commands.Add(new UICommand { Label = "Ok" });
+                await dialog1.ShowAsync();
+            }
         }
-
-
     }
 }

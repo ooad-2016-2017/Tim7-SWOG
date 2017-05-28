@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -47,13 +48,20 @@ namespace SPARK
             RegistrationDetailsButton.Width = this.ActualWidth;
         }
 
-        private void RegistrationDetailsButton_Click(object sender, RoutedEventArgs e)
+        private async void RegistrationDetailsButton_Click(object sender, RoutedEventArgs e)
         {
             bool x = (bool)CreateUser.IsChecked;
-            Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegistrationDetailsView), x);
+            if (CreateUser.IsChecked == false && CreateOwner.IsChecked == false)
+            {
+                var dialog = new MessageDialog("Niste odabrali nijednu od ponuđenih opcija");
+                dialog.Commands.Add(new UICommand { Label = "Ok" });
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                Frame.Navigate(typeof(RegistrationDetailsView), x);
+            }
         }
-
-      
     }
 }

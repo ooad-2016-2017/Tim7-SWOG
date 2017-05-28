@@ -45,7 +45,8 @@ namespace SPARK.Model
 
             set
             {
-                address = value;
+                if (value != "") address = value;
+                else throw new Exception("Nije unesena adresa parkinga");
             }
         }
 
@@ -58,7 +59,8 @@ namespace SPARK.Model
 
             set
             {
-                name = value;
+                if (value != "") name = value;
+                else throw new Exception("Nije unesen naziv parkinga");
             }
         }
 
@@ -71,7 +73,8 @@ namespace SPARK.Model
 
             set
             {
-                zone = value;
+                if (value > 0 && value < 5) zone = value;
+                else throw new Exception("Nepravilno unesena zona parkinga");
             }
         }
 
@@ -84,7 +87,8 @@ namespace SPARK.Model
 
             set
             {
-                price = value;
+                if (value >= 0) price = value;
+                else throw new Exception("Nepravilno unesena cijena parkinga");
             }
         }
 

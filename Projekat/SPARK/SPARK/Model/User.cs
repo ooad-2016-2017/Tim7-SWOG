@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace SPARK.Model
 {
@@ -35,33 +38,9 @@ namespace SPARK.Model
 
             set
             {
-                username = value;
-            }
-        }
+                if (value != "") username = value;
+                else throw new Exception("Username nije unesen");
 
-        public string Password
-        {
-            get
-            {
-                return password;
-            }
-
-            set
-            {
-                password = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
             }
         }
 
@@ -74,7 +53,47 @@ namespace SPARK.Model
 
             set
             {
-                surname = value;
+                if (value != "") surname = value;
+                else throw new Exception("Prezime nije uneseno");
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+
+            set
+            {
+                /*string kriptovana = "";
+                StringBuilder hash = new StringBuilder();
+                MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+                byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(value));
+
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    hash.Append(bytes[i].ToString("x2"));
+                }
+                kriptovana = hash.ToString();*/
+
+                if (value != "") password = value;
+                else throw new Exception("Password nije unesen");
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                if (value != "") name = value;
+                else throw new Exception("Ime nije uneseno");
             }
         }
 
@@ -87,7 +106,8 @@ namespace SPARK.Model
 
             set
             {
-                email = value;
+                if (new EmailAddressAttribute().IsValid(value)) email = value;
+                else throw new Exception("Email nije validan");
             }
         }
 

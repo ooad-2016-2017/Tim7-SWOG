@@ -36,7 +36,7 @@
                                      ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
                                      Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
                                      DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
-                                     Loaded="myMap_Loaded"
+                                     Loaded="myMap_Loaded" MapTapped="myMap_MapTapped"
                                      />
             <Button Grid.Column="1" Grid.Row="2" Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" />
             <Grid Grid.Column="3" Grid.Row="1">
@@ -64,7 +64,10 @@
                 <TextBlock Grid.Row="6" Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
                 <TextBox Grid.Row="7" Name="TextBoxAddress" />
                 <TextBlock Grid.Row="8" Name="TextBlockEmailWorkingHours" Text="Radno vrijeme:" ></TextBlock>
-                <TextBox Grid.Row="9" Name="TextBoxEmailxWorkingHours" />
+                <TimePicker Grid.Row="8" Name="openingTime" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,271,0" Grid.RowSpan="2"/>
+                <TimePicker Grid.Row="8" Name="closingTime" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="178,27,0,0" Grid.RowSpan="2" />
+                <TextBlock x:Name="od" HorizontalAlignment="Left" Margin="0,34,0,0" Grid.Row="8" TextWrapping="Wrap" Text="OD:" VerticalAlignment="Top" RenderTransformOrigin="0.528,0.482" Grid.RowSpan="2"/>
+
             </Grid>
             <Button Grid.Column="3" Grid.Row="2" Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Click="SubmitButton_Click"/>
         </Grid>

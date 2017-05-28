@@ -10,6 +10,7 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -25,6 +26,7 @@ namespace SPARK
     /// </summary>
     public sealed partial class RegisterParkingView : Page
     {
+        MapIcon lokacijaParkinga;
         public RegisterParkingView()
         {
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -44,31 +46,47 @@ namespace SPARK
         private void myMap_Loaded(object sender, RoutedEventArgs e)
         {
             myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = 43.865, Longitude = 18.4131 });
-            myMap.ZoomLevel = 14;
+            myMap.ZoomLevel = 12;
+            lokacijaParkinga = new MapIcon { Location = myMap.Center, NormalizedAnchorPoint = new Point(0.5, 1.0), Title = "Lokacija Vašeg Parkinga", ZIndex = 0 };
+            myMap.MapElements.Add(lokacijaParkinga);
         }
 
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new SPARK.Model.SPARKDbContext())
+            try
             {
-                var parking = new SPARK.Model.Parking
+                using (var db = new SPARK.Model.SPARKDbContext())
                 {
-                    Name = TextBoxName.Text,
-                    Zone = Convert.ToInt16(TextBoxParkingZone.Text),
-                    Price = Convert.ToDouble(TextBoxPrice.Text),
-                    Address = TextBoxAddress.Text,
-                    WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime("1.1.2017"), Convert.ToDateTime("5.2.2017"))
-            };
-                db.Parkings.Add(parking);
-                db.SaveChanges();
+                    var parking = new SPARK.Model.Parking
+                    {
+                        Name = TextBoxName.Text,
+                        Zone = Convert.ToInt16(TextBoxParkingZone.Text),
+                        Price = Convert.ToDouble(TextBoxPrice.Text),
+                        Address = TextBoxAddress.Text,
+                        //working hours ???
+                        WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime("1.1.2017"), Convert.ToDateTime("5.2.2017")),
+                        CoordX = (double)lokacijaParkinga.Location.Position.Longitude,
+                        CoordY = (double)lokacijaParkinga.Location.Position.Longitude,
+                    };
+                    db.Parkings.Add(parking);
+                    db.SaveChanges();
 
-                TextBoxName.Text = string.Empty;
-                TextBoxParkingZone.Text = string.Empty;
-                TextBoxPrice.Text = string.Empty;
-                TextBoxAddress.Text = string.Empty;
+                    var dialog1 = new MessageDialog("Uspješno registrovan parking '" + TextBoxName.Text + "'");
+                    dialog1.Commands.Add(new UICommand { Label = "Ok" });
+                    await dialog1.ShowAsync();
 
-
+                    TextBoxName.Text = string.Empty;
+                    TextBoxParkingZone.Text = string.Empty;
+                    TextBoxPrice.Text = string.Empty;
+                    TextBoxAddress.Text = string.Empty;
+                }
+            }
+            catch (Exception izuzetak)
+            {
+                var dialog1 = new MessageDialog(izuzetak.Message);
+                dialog1.Commands.Add(new UICommand { Label = "Ok" });
+                await dialog1.ShowAsync();
             }
         }
 
@@ -85,6 +103,11 @@ namespace SPARK
                 Frame rootFrame = Window.Current.Content as Frame;
                 Frame.Navigate(typeof(RegistrationDetailsView));
             }));
+        }
+        private void myMap_MapTapped(MapControl sender, MapInputEventArgs args)
+        {
+            var tappedGeoPosition = args.Location.Position;
+            lokacijaParkinga.Location = new Geopoint(tappedGeoPosition);
         }
     }
 }
