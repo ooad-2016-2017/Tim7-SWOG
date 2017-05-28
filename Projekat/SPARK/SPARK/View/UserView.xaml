@@ -198,7 +198,7 @@
                             <ColumnDefinition Width="10*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="registrujSe" Grid.Row="5" Grid.Column="0" Click="registrujSe_Click" Visibility="Collapsed"  Foreground="White" Background="#3DACCE" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Button x:Name="registrujSe" Grid.Row="1" Grid.Column="0" Click="registrujSe_Click" Visibility="Collapsed"  Foreground="White" Background="#3DACCE" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <Viewbox Stretch="Uniform" >

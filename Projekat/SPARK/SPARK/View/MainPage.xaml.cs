@@ -1,11 +1,14 @@
-﻿using System;
+﻿using SPARK.Model;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -63,9 +66,9 @@ namespace SPARK
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e) { 
-            Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegisterParkingView));
-//            ppup.IsOpen = true;
+            //Frame rootFrame = Window.Current.Content as Frame;
+            //Frame.Navigate(typeof(RegisterParkingView));
+            ppup.IsOpen = true;
         }
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -78,8 +81,39 @@ namespace SPARK
         private void SeekParkingButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(UserView));
+            Frame.Navigate(typeof(UserView), new Tuple<int, int>(-1, -1));
             
+        }
+
+        private async void PotvrdiButton_Click(object sender, RoutedEventArgs e)
+        {
+            String Username = TextBoxUsername1.Text;
+            String Password = TextBoxPassword1.Text;
+            using (var db = new SPARKDbContext())
+            {
+                var o = db.Owner
+                        .Where(b => b.Username == Username)
+                        .FirstOrDefault();
+                var u = db.User
+                    .Where(b => b.Username == Username)
+                    .FirstOrDefault();
+                if (o != null && o.Password == Password)
+                {
+                    Frame rootFrame = Window.Current.Content as Frame;
+                    Frame.Navigate(typeof(UserView), new Tuple<int, int>(1, o.Id));
+                }   
+                else if (u != null && u.Password == Password)
+                {
+                    Frame rootFrame = Window.Current.Content as Frame;
+                    Frame.Navigate(typeof(UserView), new Tuple<int, int>(0, u.Id));
+                }
+                else
+                {
+                    var dialog = new MessageDialog("Pogresni podaci");
+                    dialog.Commands.Add(new UICommand { Label = "Ok" });
+                    await dialog.ShowAsync();
+                }
+            }
         }
     }
 }
