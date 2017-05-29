@@ -34,6 +34,7 @@ namespace SPARK
     {
         protected int userID;
         protected int userType = -1;
+        protected Parking choosenParking = null;
         public UserView()
         {
             this.InitializeComponent();
@@ -56,45 +57,22 @@ namespace SPARK
         }
         private async void getUserLocation()
         {
-            var _cts = new CancellationTokenSource();
-
-            CancellationToken token = _cts.Token;
-
+            var accessStatus = await Geolocator.RequestAccessAsync();
             Geolocator geolocator = new Geolocator();
 
-            // Make the request for the current position
-            Geoposition pos = await geolocator.GetGeopositionAsync().AsTask(token);
-            MapIcon mapIcon1 = new MapIcon();
-            mapIcon1.ZIndex = 0;
-            mapIcon1.Image =
-                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
-            Geopoint snPoint = pos.Coordinate.Point;
-            mapIcon1.Location = snPoint;
-            mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
-            mapIcon1.Title = "VASA LOKACIJA";
-            myMap.MapElements.Add(mapIcon1);
-            
-            /*
-            switch (accessStatus)
+            if (accessStatus == GeolocationAccessStatus.Allowed)
             {
-                case GeolocationAccessStatus.Allowed:
-
-                    // If DesiredAccuracy or DesiredAccuracyInMeters are not set (or value is 0), DesiredAccuracy.Default is used.
-                    Geolocator geolocator = new Geolocator { DesiredAccuracyInMeters = 0 }; 
-                    Geoposition pos = await geolocator.GetGeopositionAsync();
-
-                    MapIcon mapIcon1 = new MapIcon();
-                    mapIcon1.ZIndex = 0;
-                    mapIcon1.Image =
-                        RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPin.png"));
-                    Geopoint snPoint = pos.Coordinate.Point;
-                    mapIcon1.Location = snPoint;
-                    mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    mapIcon1.Title = "VASA LOKACIJA";
-                    myMap.MapElements.Add(mapIcon1);
-                    break;
-            }
-            */
+                Geoposition pos = await geolocator.GetGeopositionAsync();
+                MapIcon mapIcon1 = new MapIcon();
+                mapIcon1.ZIndex = 0;
+                mapIcon1.Image =
+                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
+                Geopoint snPoint = pos.Coordinate.Point;
+                mapIcon1.Location = snPoint;
+                mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                mapIcon1.Title = "VASA LOKACIJA";
+                myMap.MapElements.Add(mapIcon1);
+            }          
         }
         
         private void loadPinsToMap()
@@ -112,8 +90,8 @@ namespace SPARK
                     Geopoint snPoint = new Geopoint(snPosition);
                     mapIcon1.Location = snPoint;
                     mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    mapIcon1.Title = p.Name;
-                    myMap.MapElements.Add(mapIcon1);
+                    mapIcon1.Title = p.Name;    
+                    myMap.MapElements.Add(mapIcon1);          
                 }
             }
         }
@@ -186,6 +164,19 @@ namespace SPARK
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(RegisterParkingView));
 
+        }
+
+        private void myMap_MapElementClick(MapControl sender, MapElementClickEventArgs args)
+        {
+            MapIcon myClickedIcon = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+            //Debug.WriteLine("Kliknuli ste na parking: " + myClickedIcon.Title);
+            using (var db = new SPARKDbContext())
+            {
+                choosenParking = db.Parkings
+                        .Where(b => b.Name == myClickedIcon.Title)
+                        .FirstOrDefault();
+                //Debug.WriteLine(kliknuti.Name + kliknuti.Id);
+            }
         }
     }
 }
