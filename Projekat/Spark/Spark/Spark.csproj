@@ -155,6 +155,7 @@
     <Content Include="Assets\crveniPin.png" />
     <Content Include="Assets\crveniPinmali.png" />
     <Content Include="Assets\sat.png" />
+    <Content Include="Assets\trenutnaLokacija.PNG" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

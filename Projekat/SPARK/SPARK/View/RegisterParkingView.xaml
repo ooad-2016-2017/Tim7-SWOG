@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*" />
-                <RowDefinition Height="25*" />
+                <RowDefinition Height="35*" />
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
@@ -42,6 +42,7 @@
             <Grid Grid.Column="3" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.7*" />
@@ -54,19 +55,26 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="0.7*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Name="TextBlockName"  Text="Naziv parkinga:" ></TextBlock>
-                <TextBox Grid.Row="1" Name="TextBoxName"></TextBox>
-                <TextBlock Grid.Row="2" Name="TextBlockParkingZone" Text="Parking zona:" ></TextBlock>
-                <TextBox Grid.Row="3" Name="TextBoxParkingZone"></TextBox>
-                <TextBlock Grid.Row="4" Name="TextBlockPrice" Text="Cijena po satu:" ></TextBlock>
-                <TextBox Grid.Row="5" Name="TextBoxPrice" />
-                <TextBlock Grid.Row="6" Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
-                <TextBox Grid.Row="7" Name="TextBoxAddress" />
-                <TextBlock Grid.Row="8" Name="TextBlockEmailWorkingHours" Text="Radno vrijeme:" ></TextBlock>
-                <TimePicker Grid.Row="8" Name="openingTime" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,271,0" Grid.RowSpan="2"/>
-                <TimePicker Grid.Row="8" Name="closingTime" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="178,27,0,0" Grid.RowSpan="2" />
-                <TextBlock x:Name="od" HorizontalAlignment="Left" Margin="0,34,0,0" Grid.Row="8" TextWrapping="Wrap" Text="OD:" VerticalAlignment="Top" RenderTransformOrigin="0.528,0.482" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Name="TextBlockName"  Text="Naziv parkinga:" ></TextBlock>
+                <TextBox Grid.Row="1" Grid.ColumnSpan="2" Name="TextBoxName"></TextBox>
+                <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Name="TextBlockParkingZone" Text="Parking zona:" ></TextBlock>
+                <TextBox Grid.Row="3" Grid.ColumnSpan="2" Name="TextBoxParkingZone"></TextBox>
+                <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Name="TextBlockPrice" Text="Cijena po satu:" ></TextBlock>
+                <TextBox Grid.Row="5" Grid.ColumnSpan="2" Name="TextBoxPrice" />
+                <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
+                <TextBox Grid.Row="7" Grid.ColumnSpan="2" Name="TextBoxAddress" />
+                <TextBlock Grid.Row="8" Name="TextBlockEmailWorkingHours" Grid.Column="0" Text="Radno vrijeme:" ></TextBlock>
+                <TimePicker Grid.Row="10" Name="openingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+                <TimePicker Grid.Row="13" Name="closingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.RowSpan="2" />
+                <TextBlock x:Name="od" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="9" TextWrapping="Wrap" Text="OD:" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <TextBlock x:Name="doo" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="12" TextWrapping="Wrap" Text="DO:" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
             </Grid>
             <Button Grid.Column="3" Grid.Row="2" Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Click="SubmitButton_Click"/>

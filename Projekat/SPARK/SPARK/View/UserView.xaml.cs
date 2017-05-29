@@ -59,7 +59,7 @@ namespace SPARK
         private async void getUserLocation()
         {
             var accessStatus = await Geolocator.RequestAccessAsync();
-            Geolocator geolocator = new Geolocator();
+            Geolocator geolocator = new Geolocator { DesiredAccuracyInMeters = 1 };
 
             if (accessStatus == GeolocationAccessStatus.Allowed)
             {
@@ -67,7 +67,7 @@ namespace SPARK
                 MapIcon mapIcon1 = new MapIcon();
                 mapIcon1.ZIndex = 0;
                 mapIcon1.Image =
-                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
+                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/trenutnaLokacija.png"));
                 Geopoint snPoint = pos.Coordinate.Point;
                 mapIcon1.Location = snPoint;
                 mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
