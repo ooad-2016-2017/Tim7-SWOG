@@ -20,12 +20,14 @@ namespace SPARK.ViewModel
 
         public UserViewModel()
         {
+            
             Parkings = new List<Parking>();
             using (var db = new SPARKDbContext()) {
                
                 int trazeni_id = UserView.userID;
-                if (trazeni_id != null && UserView.spremno)
+                if (trazeni_id != -1)
                 {
+
                     var u = db.User.Where(b => b.Id == trazeni_id).FirstOrDefault();
                     korisnik = new User();
                     korisnik.Name = u.Name;

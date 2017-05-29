@@ -39,7 +39,7 @@ namespace SPARK
         public UserView()
         {
             this.InitializeComponent();
-            DataContext = new UserViewModel();
+            //DataContext = new UserViewModel();
 
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
@@ -119,6 +119,7 @@ namespace SPARK
                 kupiKredite.Visibility = Visibility.Collapsed;
                 registrujSe.Visibility = Visibility.Visible;
             }
+            DataContext = new UserViewModel();
         }
 
 
@@ -159,6 +160,7 @@ namespace SPARK
         {
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(View.EditUserView));
+
         }
 
         private void AddParkingButton_Click(object sender, RoutedEventArgs e)
