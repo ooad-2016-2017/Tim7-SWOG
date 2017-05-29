@@ -32,8 +32,9 @@ namespace SPARK
     /// </summary>
     public sealed partial class UserView : Page
     {
-        protected int userID;
+        public static int userID;
         protected int userType = -1;
+        public static bool spremno=false;
         protected Parking choosenParking = null;
         public UserView()
         {
@@ -101,6 +102,7 @@ namespace SPARK
             var parameters = e.Parameter as Tuple<int, int>;
             userType = parameters.Item1;
             userID = parameters.Item2;
+            spremno = true;
             if (userType == 1)
                 Debug.WriteLine("Ulogovani ste kao vlasnik " + userID.ToString());
             else if(userType == 0)

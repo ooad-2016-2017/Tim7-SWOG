@@ -22,17 +22,19 @@ namespace SPARK.ViewModel
         {
             Parkings = new List<Parking>();
             using (var db = new SPARKDbContext()) {
-                /*
-                int trazeni_id = 6;
-                var u = db.User.Where(b => b.Id == trazeni_id).FirstOrDefault();
-                korisnik = new User();
-                korisnik.Name = u.Name;
-                korisnik.Surname = u.Surname;
-                korisnik.Id = u.Id;
-                korisnik.Password = u.Password;
-                korisnik.Username = u.Username;
-                korisnik.Email = u.Email;
-                */
+               
+                int trazeni_id = UserView.userID;
+                if (trazeni_id != null && UserView.spremno)
+                {
+                    var u = db.User.Where(b => b.Id == trazeni_id).FirstOrDefault();
+                    korisnik = new User();
+                    korisnik.Name = u.Name;
+                    korisnik.Surname = u.Surname;
+                    korisnik.Id = u.Id;
+                    korisnik.Password = u.Password;
+                    korisnik.Username = u.Username;
+                    korisnik.Email = u.Email;
+                }
                 Parkings.Add(db.Parkings.Where(p => p.Id==1).FirstOrDefault()); //= db.Parkings.ToList<Parking>();
             }
             
