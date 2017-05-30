@@ -95,6 +95,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Azure\Owner.cs" />
+    <Compile Include="Azure\Parking.cs" />
+    <Compile Include="Azure\PaymentMethod.cs" />
+    <Compile Include="Azure\User.cs" />
     <Compile Include="Helper\INavigationService.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="Helper\RelayCommand.cs" />

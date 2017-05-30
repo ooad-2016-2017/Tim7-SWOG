@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,23 +59,47 @@ namespace SPARK
             {
                 using (var db = new SPARK.Model.SPARKDbContext())
                 {
-                    var parking = new SPARK.Model.Parking
-                    {
-                        Name = TextBoxName.Text,
-                        Zone = Convert.ToInt16(TextBoxParkingZone.Text),
-                        Price = Convert.ToDouble(TextBoxPrice.Text),
-                        Address = TextBoxAddress.Text,
-                        //working hours ???
-                        WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime("1.1.2017"), Convert.ToDateTime("5.2.2017")),
-                        CoordX = (double)lokacijaParkinga.Location.Position.Longitude,
-                        CoordY = (double)lokacijaParkinga.Location.Position.Longitude,
-                    };
-                    db.Parkings.Add(parking);
-                    db.SaveChanges();
+                    /*  var parking = new SPARK.Model.Parking
+                      {
+                          Name = TextBoxName.Text,
+                          Zone = Convert.ToInt16(TextBoxParkingZone.Text),
+                          Price = Convert.ToDouble(TextBoxPrice.Text),
+                          Address = TextBoxAddress.Text,
+                          //working hours ???
+                          WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime("1.1.2017"), Convert.ToDateTime("5.2.2017")),
+                          CoordX = (double)lokacijaParkinga.Location.Position.Longitude,
+                          CoordY = (double)lokacijaParkinga.Location.Position.Longitude,
+                      };
+                      db.Parkings.Add(parking);
+                      db.SaveChanges();
 
-                    var dialog1 = new MessageDialog("Uspješno registrovan parking '" + TextBoxName.Text + "'");
-                    dialog1.Commands.Add(new UICommand { Label = "Ok" });
-                    await dialog1.ShowAsync();
+                      var dialog1 = new MessageDialog("Uspješno registrovan parking '" + TextBoxName.Text + "'");
+                      dialog1.Commands.Add(new UICommand { Label = "Ok" });
+                      await dialog1.ShowAsync();*/
+
+                    IMobileServiceTable<Azure.Parking> userTableObj = App.MobileService.GetTable<Azure.Parking>();
+                    try
+                    {
+                        Azure.Parking obj = new Azure.Parking();
+                        obj.Name = TextBoxName.Text.ToString();
+                        obj.Zone = Convert.ToInt16(TextBoxParkingZone.Text);
+                        obj.id = "1";
+                        obj.Price = Convert.ToDouble(TextBoxPrice.Text);
+                        obj.Address = TextBoxAddress.Text;
+                        obj.WorkingFrom = "08:00";
+                        obj.WorkingTo = "18:00";
+                        obj.CoordX = (double)lokacijaParkinga.Location.Position.Longitude;
+                        obj.CoordY = (double)lokacijaParkinga.Location.Position.Longitude;
+                        await userTableObj.InsertAsync(obj);
+                        MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novog korisnika.");
+                        await msgDialog.ShowAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageDialog msgDialogError = new MessageDialog("Error : " +
+                        ex.ToString());
+                        // msgDialogError.ShowAsync();
+                    }
 
                     TextBoxName.Text = string.Empty;
                     TextBoxParkingZone.Text = string.Empty;

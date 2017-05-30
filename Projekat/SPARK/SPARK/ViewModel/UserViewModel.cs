@@ -17,10 +17,11 @@ namespace SPARK.ViewModel
         //Komande koje realiziraju Binding UnosKartice i DodavanjeKomponent
         public ICommand FillWithUserData { get; set; }
         public List<Parking> Parkings { get; set; }
-
+        public static Parking ClickedParking { get; set; }
+        
         public UserViewModel()
         {
-            
+            ClickedParking = null;
             Parkings = new List<Parking>();
             using (var db = new SPARKDbContext()) {
                
@@ -29,13 +30,16 @@ namespace SPARK.ViewModel
                 {
 
                     var u = db.User.Where(b => b.Id == trazeni_id).FirstOrDefault();
-                    korisnik = new User();
-                    korisnik.Name = u.Name;
-                    korisnik.Surname = u.Surname;
-                    korisnik.Id = u.Id;
-                    korisnik.Password = u.Password;
-                    korisnik.Username = u.Username;
-                    korisnik.Email = u.Email;
+                    if (u != null)
+                    {
+                        korisnik = new User();
+                        korisnik.Name = u.Name;
+                        korisnik.Surname = u.Surname;
+                        korisnik.Id = u.Id;
+                        korisnik.Password = u.Password;
+                        korisnik.Username = u.Username;
+                        korisnik.Email = u.Email;
+                    }
                 }
                 Parkings.Add(db.Parkings.Where(p => p.Id==1).FirstOrDefault()); //= db.Parkings.ToList<Parking>();
             }

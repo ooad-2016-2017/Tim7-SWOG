@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SPARK.ViewModel;
 using Windows.UI.Core;
+using Microsoft.WindowsAzure.MobileServices;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -64,25 +65,66 @@ namespace SPARK
                     var user = new User();
                     if (isUser)
                     {
-                        user = new User
+                        /*   user = new User
+                           {
+                               Name = TextBoxName.Text.ToString(),
+                               Surname = TextBoxSurname.Text.ToString(),
+                               Username = TextBoxUsername.Text.ToString(),
+                               Password = TextBoxPassword.Text.ToString(),
+                               Email = TextBoxEmail.Text.ToString()
+                           };*/
+                        IMobileServiceTable<Azure.User> userTableObj = App.MobileService.GetTable<Azure.User>();
+                        try
                         {
-                            Name = TextBoxName.Text.ToString(),
-                            Surname = TextBoxSurname.Text.ToString(),
-                            Username = TextBoxUsername.Text.ToString(),
-                            Password = TextBoxPassword.Text.ToString(),
-                            Email = TextBoxEmail.Text.ToString()
-                        };
+                            Azure.User obj = new Azure.User();
+                            obj.Name = TextBoxName.Text.ToString();
+                            obj.Surname = TextBoxSurname.Text.ToString();
+                            obj.id = "1";
+                            obj.Password = TextBoxPassword.Text.ToString();
+                            obj.Username = TextBoxUsername.Text.ToString();
+                            obj.Email = TextBoxEmail.Text.ToString();
+                            await userTableObj.InsertAsync(obj);
+                            MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novoi parking.");
+                            await msgDialog.ShowAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageDialog msgDialogError = new MessageDialog("Error : " +
+                            ex.ToString());
+                           // msgDialogError.ShowAsync();
+                        }
+
                     }
                     else
                     {
-                        user = new Owner
+                        /*    user = new Owner
+                            {
+                                Name = TextBoxName.Text.ToString(),
+                                Surname = TextBoxSurname.Text.ToString(),
+                                Username = TextBoxUsername.Text.ToString(),
+                                Password = TextBoxPassword.Text.ToString(),
+                                Email = TextBoxEmail.Text.ToString()
+                            };*/
+                        IMobileServiceTable<Azure.Owner> userTableObj = App.MobileService.GetTable<Azure.Owner>();
+                        try
                         {
-                            Name = TextBoxName.Text.ToString(),
-                            Surname = TextBoxSurname.Text.ToString(),
-                            Username = TextBoxUsername.Text.ToString(),
-                            Password = TextBoxPassword.Text.ToString(),
-                            Email = TextBoxEmail.Text.ToString()
-                        };
+                            Azure.Owner obj = new Azure.Owner();
+                            obj.Name = TextBoxName.Text.ToString();
+                            obj.Surname = TextBoxSurname.Text.ToString();
+                            obj.id = "1";
+                            obj.Password = TextBoxPassword.Text.ToString();
+                            obj.Username = TextBoxUsername.Text.ToString();
+                            obj.Email = TextBoxEmail.Text.ToString();
+                            await userTableObj.InsertAsync(obj);
+                            MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novog vlasnika.");
+                            await msgDialog.ShowAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageDialog msgDialogError = new MessageDialog("Error : " +
+                            ex.ToString());
+                            // msgDialogError.ShowAsync();
+                        }
                     }
 
                     db.User.Add(user);
@@ -94,9 +136,7 @@ namespace SPARK
                 TextBoxPassword.Text = string.Empty;
                 TextBoxEmail.Text = string.Empty;
 
-                var dialog = new MessageDialog("Vaš korisnički račun je uspješno kreiran!");
-                dialog.Commands.Add(new UICommand { Label = "Ok" });
-                await dialog.ShowAsync();
+
             }
             catch (Exception izuzetak)
             {

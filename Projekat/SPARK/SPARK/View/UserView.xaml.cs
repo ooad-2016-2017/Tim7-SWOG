@@ -39,7 +39,7 @@ namespace SPARK
         public UserView()
         {
             this.InitializeComponent();
-            //DataContext = new UserViewModel();
+            DataContext = new UserViewModel();
 
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
@@ -135,7 +135,8 @@ namespace SPARK
         }
         private void registrujSe_Click(object sender, RoutedEventArgs e)
         {
-           
+            Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(RegistrationTypeView));
         }
         private void rezervisiMjesto_Click(object sender, RoutedEventArgs e)
         {
@@ -173,6 +174,7 @@ namespace SPARK
         private void myMap_MapElementClick(MapControl sender, MapElementClickEventArgs args)
         {
             MapIcon myClickedIcon = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+            
             //Debug.WriteLine("Kliknuli ste na parking: " + myClickedIcon.Title);
             using (var db = new SPARKDbContext())
             {
@@ -180,7 +182,9 @@ namespace SPARK
                         .Where(b => b.Name == myClickedIcon.Title)
                         .FirstOrDefault();
                 //Debug.WriteLine(kliknuti.Name + kliknuti.Id);
+
             }
+            UserViewModel.ClickedParking = choosenParking;
         }
     }
 }
