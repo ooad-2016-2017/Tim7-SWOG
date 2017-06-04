@@ -1,0 +1,12 @@
+Kreacijski patterni
+Uloga Prototype paterna je da kreira nove objekte klonirajuæi jednu od postojeæih prototip instanci (postojeæi objekat).
+Ovaj pattern je zastupljen u našoj igrici, ali i opæenito se èesto koristi u igricama jer skraæuje kod i olakšava rad sa sliènim
+objektima. Prototype pattern je zastupljen u našoj igrici kroz koliziju, odnosno sva auta koja se nalaze na parkingu kao prepreka
+imaju jednaku ulogu i ponašaju se jednako, što skraæuje kod jer jednom definisana kolizija sa autom se odnosi na sve instance auta 
+koje se nalaze na parkingu kao prepreka.
+
+Patterni ponasanja
+Observer pattern uspostavlja relaciju izmeðu objekata tako kada jedan objekat promijeni stanje, drugi zainteresirani objekti 
+se obavještavaju. Ovaj pattern se može primijetiti u našoj igrici u dijelu kada autiæ "udari" u drugo auto ili parkira se ispravno,
+u oba sluèaja se auto postavlja na poèetak scenarija.
+
