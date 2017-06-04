@@ -1,4 +1,5 @@
-﻿using SPARK.Model;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using SPARK.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -89,6 +90,60 @@ namespace SPARK
         {
             String Username = TextBoxUsername1.Text;
             String Password = TextBoxPassword1.Text;
+
+
+            IMobileServiceTable<Azure.User> userTableObj = App.MobileService.GetTable<Azure.User>();
+            try
+            {
+                var pass = string.Empty;
+                if (Username != "")
+                {
+                    List<Azure.User> lista = await App.MobileService.GetTable<Azure.User>().Where(x => x.Username == Username).ToListAsync();
+                    List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().Where(x => x.Username == Username).ToListAsync();
+                    if (lista.Count != 0) {
+                        pass = lista.Find(x => x.Username == Username).Password;
+                        if (Password == pass) {
+                            int id = Convert.ToInt32(lista.Find(x => x.Username == Username).id);
+                            Frame rootFrame = Window.Current.Content as Frame;
+                            Frame.Navigate(typeof(UserView), new Tuple<int, int>(0, id));
+                        } else
+                        {
+                            var dialog = new MessageDialog("Pogresna sifra!");
+                            dialog.Commands.Add(new UICommand { Label = "Ok" });
+                            await dialog.ShowAsync();
+                        }
+                    }else if(listaVlasnika.Count !=0)
+                    {
+                        pass = listaVlasnika.Find(x => x.Username == Username).Password;
+                        if (Password == pass)
+                        {
+                            int id = Convert.ToInt32(listaVlasnika.Find(x => x.Username == Username).id);
+                            Frame rootFrame = Window.Current.Content as Frame;
+                            Frame.Navigate(typeof(UserView), new Tuple<int, int>(1, id));
+                        }
+                        else
+                        {
+                            var dialog = new MessageDialog("Pogresna sifra!");
+                            dialog.Commands.Add(new UICommand { Label = "Ok" });
+                            await dialog.ShowAsync();
+                        }
+                    }else
+                    {
+                        var dialog = new MessageDialog("Unijeli ste nepostojeci Username!");
+                        dialog.Commands.Add(new UICommand { Label = "Ok" });
+                        await dialog.ShowAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageDialog msgDialogError = new MessageDialog("Error : " + ex.ToString());
+                // msgDialogError.ShowAsync();
+            }
+
+
+            /*
+
             using (var db = new SPARKDbContext())
             {
                 var o = db.Owner
@@ -113,7 +168,7 @@ namespace SPARK
                     dialog.Commands.Add(new UICommand { Label = "Ok" });
                     await dialog.ShowAsync();
                 }
-            }
+            }*/
         }
     }
 }

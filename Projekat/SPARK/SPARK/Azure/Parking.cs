@@ -13,6 +13,11 @@ namespace SPARK.Azure
             get;
             set;
         }
+        public int id_vlasnika
+        {
+            get;
+            set;
+        }
         public string Address
         {
             get;

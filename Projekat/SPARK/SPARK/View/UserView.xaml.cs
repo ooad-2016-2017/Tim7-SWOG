@@ -33,14 +33,15 @@ namespace SPARK
     public sealed partial class UserView : Page
     {
         public static int userID;
-        protected int userType = -1;
+        public static int userType = -1;
         public static bool spremno=false;
-        protected Parking choosenParking = null;
+        private Parking choosenParking = null;
+        public static User trenutni;
+
         public UserView()
         {
             this.InitializeComponent();
             DataContext = new UserViewModel();
-
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
@@ -54,6 +55,8 @@ namespace SPARK
             myMap.MapServiceToken = "laUq6i4377dfOIVIHYEI~T_8vyIA3sznxgRSix8_JFw~AvZvd6to90gmNls6DvTMFLuiu_ekbhwYin_dmDs9lqGpvqgeaCCf6mtqNdXkVKmP";
             loadPinsToMap();
             getUserLocation();
+            
+
 
         }
         private async void getUserLocation()
@@ -76,25 +79,25 @@ namespace SPARK
             }          
         }
         
-        private void loadPinsToMap()
+        public void loadPinsToMap()
         {
-            using (var db = new SPARKDbContext())
-            {
-                var parkings = db.Parkings;
-                foreach (var p in parkings)
-                {
-                    MapIcon mapIcon1 = new MapIcon();
-                    mapIcon1.ZIndex = 0;
-                    mapIcon1.Image =
-                        RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));        
-                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY };
-                    Geopoint snPoint = new Geopoint(snPosition);
-                    mapIcon1.Location = snPoint;
-                    mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    mapIcon1.Title = p.Name;    
-                    myMap.MapElements.Add(mapIcon1);          
-                }
-            }
+              using (var db = new SPARKDbContext())
+              {
+                  var parkings = db.Parkings;
+                  foreach (var p in parkings)
+                  {
+                      MapIcon mapIcon1 = new MapIcon();
+                      mapIcon1.ZIndex = 0;
+                      mapIcon1.Image =
+                      RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));        
+                      BasicGeoposition snPosition = new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY };
+                      Geopoint snPoint = new Geopoint(snPosition);
+                      mapIcon1.Location = snPoint;
+                      mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                      mapIcon1.Title = p.Name;    
+                      myMap.MapElements.Add(mapIcon1);          
+                  }
+              }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -152,7 +155,7 @@ namespace SPARK
 
         private void PinButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ParkingsListView.ItemsSource = UserViewModel.Parkings;
             MySplitView.IsPaneOpen = true;
             
         }
@@ -167,7 +170,7 @@ namespace SPARK
         private void AddParkingButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(RegisterParkingView));
+            Frame.Navigate(typeof(RegisterParkingView),userID);
 
         }
 

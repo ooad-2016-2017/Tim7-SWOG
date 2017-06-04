@@ -30,6 +30,7 @@ namespace SPARK.View
 
         public EditUserView()
         {
+            DataContext = new UserViewModel();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
@@ -39,7 +40,6 @@ namespace SPARK.View
                     a.Handled = true;
                 }
             };
-            DataContext = new UserViewModel();
             NavigationCacheMode = NavigationCacheMode.Required;
             this.InitializeComponent();
         }

@@ -73,13 +73,15 @@ namespace SPARK
                                Password = TextBoxPassword.Text.ToString(),
                                Email = TextBoxEmail.Text.ToString()
                            };*/
+                        List<Azure.User> lista = await App.MobileService.GetTable<Azure.User>().ToListAsync();
+
                         IMobileServiceTable<Azure.User> userTableObj = App.MobileService.GetTable<Azure.User>();
                         try
                         {
                             Azure.User obj = new Azure.User();
                             obj.Name = TextBoxName.Text.ToString();
                             obj.Surname = TextBoxSurname.Text.ToString();
-                            obj.id = "1";
+                            obj.id = Convert.ToString(lista.Count+1);
                             obj.Password = TextBoxPassword.Text.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
                             obj.Email = TextBoxEmail.Text.ToString();
@@ -105,13 +107,15 @@ namespace SPARK
                                 Password = TextBoxPassword.Text.ToString(),
                                 Email = TextBoxEmail.Text.ToString()
                             };*/
+                        List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().ToListAsync();
+
                         IMobileServiceTable<Azure.Owner> userTableObj = App.MobileService.GetTable<Azure.Owner>();
                         try
                         {
                             Azure.Owner obj = new Azure.Owner();
                             obj.Name = TextBoxName.Text.ToString();
                             obj.Surname = TextBoxSurname.Text.ToString();
-                            obj.id = "1";
+                            obj.id = Convert.ToString(listaVlasnika.Count + 1);
                             obj.Password = TextBoxPassword.Text.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
                             obj.Email = TextBoxEmail.Text.ToString();

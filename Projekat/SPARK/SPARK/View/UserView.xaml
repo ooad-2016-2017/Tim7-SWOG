@@ -41,7 +41,7 @@
             CompactPaneLength="0" OpenPaneLength="250" PanePlacement="Right" PaneBackground="#0081AF">
         <SplitView.Pane>
             <ListView Background="#0081AF"
-            x:Name="RestoraniListView"
+            x:Name="ParkingsListView"
             ItemTemplate="{StaticResource ParkingListTemplate}" 
             IsItemClickEnabled="True"
             ItemsSource="{Binding Parkings}" >

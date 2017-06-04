@@ -27,6 +27,7 @@ namespace SPARK
     /// </summary>
     public sealed partial class RegisterParkingView : Page
     {
+        int userID;
         MapIcon lokacijaParkinga;
         public RegisterParkingView()
         {
@@ -78,20 +79,24 @@ namespace SPARK
                       await dialog1.ShowAsync();*/
 
                     IMobileServiceTable<Azure.Parking> userTableObj = App.MobileService.GetTable<Azure.Parking>();
+
+                    List<Azure.Parking> lista = await App.MobileService.GetTable<Azure.Parking>().ToListAsync();
                     try
                     {
                         Azure.Parking obj = new Azure.Parking();
                         obj.Name = TextBoxName.Text.ToString();
-                        obj.Zone = Convert.ToInt16(TextBoxParkingZone.Text);
-                        obj.id = "1";
+                        obj.Zone = Convert.ToInt32(TextBoxParkingZone.Text);
+                        obj.Zone = 2;
+                        obj.id = Convert.ToString(lista.Count + 1); 
                         obj.Price = Convert.ToDouble(TextBoxPrice.Text);
                         obj.Address = TextBoxAddress.Text;
-                        obj.WorkingFrom = "08:00";
-                        obj.WorkingTo = "18:00";
+                        obj.WorkingFrom= Convert.ToString(openingTime.Time.Hours) + ":" + Convert.ToString(openingTime.Time.Minutes);
+                        obj.WorkingTo = Convert.ToString(closingTime.Time.Hours) + ":" + Convert.ToString(closingTime.Time.Minutes);
                         obj.CoordX = (double)lokacijaParkinga.Location.Position.Longitude;
-                        obj.CoordY = (double)lokacijaParkinga.Location.Position.Longitude;
+                        obj.CoordY = (double)lokacijaParkinga.Location.Position.Latitude;
+                        obj.id_vlasnika = userID;
                         await userTableObj.InsertAsync(obj);
-                        MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novog korisnika.");
+                        MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novi parking.");
                         await msgDialog.ShowAsync();
                     }
                     catch (Exception ex)
@@ -133,6 +138,13 @@ namespace SPARK
         {
             var tappedGeoPosition = args.Location.Position;
             lokacijaParkinga.Location = new Geopoint(tappedGeoPosition);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var parameter= e.Parameter;
+            userID = Convert.ToInt32(parameter);
+
         }
     }
 }

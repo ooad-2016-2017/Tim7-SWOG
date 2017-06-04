@@ -71,8 +71,8 @@
                 <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
                 <TextBox Grid.Row="7" Grid.ColumnSpan="2" Name="TextBoxAddress" />
                 <TextBlock Grid.Row="8" Name="TextBlockEmailWorkingHours" Grid.Column="0" Text="Radno vrijeme:" ></TextBlock>
-                <TimePicker Grid.Row="10" Name="openingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-                <TimePicker Grid.Row="13" Name="closingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.RowSpan="2" />
+                <TimePicker  Grid.Row="10" Name="openingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+                <TimePicker  Grid.Row="13" Name="closingTime" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.RowSpan="2" />
                 <TextBlock x:Name="od" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="9" TextWrapping="Wrap" Text="OD:" VerticalAlignment="Top" Grid.RowSpan="2"/>
                 <TextBlock x:Name="doo" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="12" TextWrapping="Wrap" Text="DO:" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
