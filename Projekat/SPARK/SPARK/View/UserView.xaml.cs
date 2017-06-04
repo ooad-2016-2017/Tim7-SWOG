@@ -78,10 +78,10 @@ namespace SPARK
                 myMap.MapElements.Add(mapIcon1);
             }          
         }
-        
-        public void loadPinsToMap()
+
+        public async void loadPinsToMap()
         {
-              using (var db = new SPARKDbContext())
+            /*  using (var db = new SPARKDbContext())
               {
                   var parkings = db.Parkings;
                   foreach (var p in parkings)
@@ -97,7 +97,45 @@ namespace SPARK
                       mapIcon1.Title = p.Name;    
                       myMap.MapElements.Add(mapIcon1);          
                   }
-              }
+              }*/
+            List<Parking> Parkings;
+            List<Azure.Parking> listaParkinga = await App.MobileService.GetTable<Azure.Parking>().ToListAsync();
+            if (listaParkinga.Count != 0)
+            {
+                Parkings = new List<Parking>();
+
+                foreach (Azure.Parking p in listaParkinga)
+                {
+                    Parking novi = new Parking();
+                    novi.Id = Convert.ToInt32(p.id);
+                    novi.Name = p.Name;
+                    novi.Address = p.Address;
+                    novi.Capacity = p.Capacity;
+                    novi.CoordX = p.CoordX;
+                    novi.CoordY = p.CoordY;
+                    novi.MinCredits = Convert.ToInt32(p.MinCredits);
+                    novi.MinCredits = Convert.ToInt32(p.MonthlyProfit);
+                    novi.NumTakenSpaces = p.NumTakenSpaces;
+                    novi.Price = Convert.ToInt32(p.Price);
+                    novi.TodaysProfit = Convert.ToInt32(p.TodaysProfit);
+                    novi.WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime(p.WorkingFrom), Convert.ToDateTime(p.WorkingTo));
+                    novi.Zone = p.Zone;
+                    Parkings.Add(novi);
+                }
+                foreach (var p in Parkings)
+                {
+                    MapIcon mapIcon1 = new MapIcon();
+                    mapIcon1.ZIndex = 0;
+                    mapIcon1.Image =
+                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
+                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY };
+                    Geopoint snPoint = new Geopoint(snPosition);
+                    mapIcon1.Location = snPoint;
+                 //   mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    mapIcon1.Title = p.Name;
+                    myMap.MapElements.Add(mapIcon1);
+                }
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

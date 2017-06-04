@@ -92,8 +92,8 @@ namespace SPARK
                         obj.Address = TextBoxAddress.Text;
                         obj.WorkingFrom= Convert.ToString(openingTime.Time.Hours) + ":" + Convert.ToString(openingTime.Time.Minutes);
                         obj.WorkingTo = Convert.ToString(closingTime.Time.Hours) + ":" + Convert.ToString(closingTime.Time.Minutes);
-                        obj.CoordX = (double)lokacijaParkinga.Location.Position.Longitude;
-                        obj.CoordY = (double)lokacijaParkinga.Location.Position.Latitude;
+                        obj.CoordY = (double)lokacijaParkinga.Location.Position.Longitude;
+                        obj.CoordX = (double)lokacijaParkinga.Location.Position.Latitude;
                         obj.id_vlasnika = userID;
                         await userTableObj.InsertAsync(obj);
                         MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novi parking.");
