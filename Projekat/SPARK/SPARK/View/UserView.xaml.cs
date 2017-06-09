@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Windows.System;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SPARK.ViewModel;
 using Windows.UI.Core;
-using System.Diagnostics;
 using Windows.UI.Xaml.Controls.Maps;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.Storage.Streams;
 using SPARK.Model;
-using Windows.Devices.Geolocation;
-using System.Threading;
+using System.Collections.Generic;
+using System;
+using Windows.Foundation;
+using System.Diagnostics;
+using System.Linq;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,7 +27,8 @@ namespace SPARK
         public static int userType = -1;
         public static bool spremno=false;
         private Parking choosenParking = null;
-        public static User trenutni;
+        public static Model.User trenutni; //OVDJE SAM DODAO Model PRIJE User JER MI JE IZBACIVALO ERRORRRRRRRR GRRRRR
+        List<Parking> Parkings = new List<Parking>();
 
         public UserView()
         {
@@ -81,7 +73,7 @@ namespace SPARK
 
         public async void loadPinsToMap()
         {
-            /*  using (var db = new SPARKDbContext())
+            /*using (var db = new SPARKDbContext())
               {
                   var parkings = db.Parkings;
                   foreach (var p in parkings)
@@ -94,15 +86,15 @@ namespace SPARK
                       Geopoint snPoint = new Geopoint(snPosition);
                       mapIcon1.Location = snPoint;
                       mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                      mapIcon1.Title = p.Name;    
-                      myMap.MapElements.Add(mapIcon1);          
+                      mapIcon1.Title = p.Name;
+                    myMap.MapElements.Add(mapIcon1);          
                   }
               }*/
-            List<Parking> Parkings;
+            //List<Parking> Parkings;
             List<Azure.Parking> listaParkinga = await App.MobileService.GetTable<Azure.Parking>().ToListAsync();
             if (listaParkinga.Count != 0)
             {
-                Parkings = new List<Parking>();
+                //Parkings = new List<Parking>();
 
                 foreach (Azure.Parking p in listaParkinga)
                 {
@@ -131,7 +123,7 @@ namespace SPARK
                     BasicGeoposition snPosition = new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY };
                     Geopoint snPoint = new Geopoint(snPosition);
                     mapIcon1.Location = snPoint;
-                 //   mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
                     mapIcon1.Title = p.Name;
                     myMap.MapElements.Add(mapIcon1);
                 }
@@ -219,11 +211,42 @@ namespace SPARK
             //Debug.WriteLine("Kliknuli ste na parking: " + myClickedIcon.Title);
             using (var db = new SPARKDbContext())
             {
-                choosenParking = db.Parkings
+                /*choosenParking = db.Parkings
                         .Where(b => b.Name == myClickedIcon.Title)
                         .FirstOrDefault();
+                cijenaPoSatu.Text = myClickedIcon.Title;*/
+                foreach(Parking p in Parkings)
+                {
+                    if(p.Name == myClickedIcon.Title)
+                    {
+                        choosenParking = p;
+                        globalNaziv.Text = choosenParking.Name;
+                        cijenaPoSatu.Text = Convert.ToString(choosenParking.Price);
+                        parkingZona.Text = Convert.ToString(choosenParking.Zone);
+                        lokacija.Text = Convert.ToString(choosenParking.Address);
+                        string vrijeme = Convert.ToString(choosenParking.WorkingHours);
+                        radnoVrijeme.Text = vrijeme.Substring(11,5) + " AM - " + vrijeme.Substring(34, 5) + " PM";
+                        if (choosenParking.Capacity == choosenParking.NumTakenSpaces)
+                        {
+                            statusParkinga.Text = "Zauzet";
+                            //statusParkinga.Foreground = CRVENA
+                        }
+                        else
+                        {
+                            statusParkinga.Text = "Slobodan";
+                            //statusParkinga.Foreground = 0081AF;
+                        }
+                        break;
+                    }
+                }
                 //Debug.WriteLine(kliknuti.Name + kliknuti.Id);
-
+                /*cijenaPoSatu.Text = Convert.ToString(choosenParking.Price);
+                parkingZona.Text = Convert.ToString(choosenParking.Zone);
+                lokacija.Text = Convert.ToString(choosenParking.Address);
+                radnoVrijeme.Text = Convert.ToString(choosenParking.WorkingHours);
+                if (choosenParking.Capacity == choosenParking.NumTakenSpaces)
+                    statusParkinga.Text = "Zauzet";
+                else statusParkinga.Text = "Slobodan";*/
             }
             UserViewModel.ClickedParking = choosenParking;
         }

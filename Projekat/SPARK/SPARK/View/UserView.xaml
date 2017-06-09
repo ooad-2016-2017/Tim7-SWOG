@@ -31,12 +31,12 @@
                 <TextBlock Text="{x:Bind Name}" Foreground="White" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" />
                 <!--Kolicina i Cijena su direkt u view modelu. POTREBNO JE IMATI PUBLIC GET I SET tj ispravan Property da bi binding radio-->
                 <TextBlock Text="{x:Bind Address}"  Foreground="White" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
-               
+
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    
-    
+
+
     <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
             CompactPaneLength="0" OpenPaneLength="250" PanePlacement="Right" PaneBackground="#0081AF">
         <SplitView.Pane>
@@ -45,10 +45,10 @@
             ItemTemplate="{StaticResource ParkingListTemplate}" 
             IsItemClickEnabled="True"
             ItemsSource="{Binding Parkings}" >
-                    <ListView.Template>
-                        <!--Rucno mjenjanje liste kako bi se dodali naslovi (headers) kolona
+                <ListView.Template>
+                    <!--Rucno mjenjanje liste kako bi se dodali naslovi (headers) kolona
                 Na ovaj nacin se rucno mogu dodati neke kontrole u listu za specijalne liste.-->
-                        <ControlTemplate>
+                    <ControlTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -61,16 +61,16 @@
                             </Grid.ColumnDefinitions>
                             <Button Name="AddParkingButton" Background="#0081AF" Content="REGISTRUJ PARKING" Foreground="white" Grid.Row="0" Click="AddParkingButton_Click"></Button>
                             <!-- Ostatak da bude lista koja je orginalno trebala biti -->
-                                <ItemsPresenter Grid.Row="1" Grid.Column="0"></ItemsPresenter>
+                            <ItemsPresenter Grid.Row="1" Grid.Column="0"></ItemsPresenter>
                         </Grid>
-                        </ControlTemplate>
-                    </ListView.Template>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem"  >
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"  />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                    </ControlTemplate>
+                </ListView.Template>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem"  >
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"  />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </SplitView.Pane>
         <SplitView.Content>
 
@@ -138,19 +138,19 @@
                             <TextBlock x:Name="cijenaPoSatuLabel" Foreground="White" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Cijena po satu:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="2" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="cijenaPoSatu" Foreground="White" HorizontalAlignment="Stretch"  Grid.Row="4" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="cijenaPoSatu" Foreground="#0081AF" HorizontalAlignment="Stretch"  Grid.Row="4" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="3" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
                             <TextBlock x:Name="textBlockParkingZonaLabel" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Parking zona:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="4" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="parkingZona" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="parkingZona" Foreground="#0081AF" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="5" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="textBlock2" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Lokacija:" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="textBlock2" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Adresa:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="6" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="lokacija" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="lokacija" Foreground="#0081AF" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Rectangle Grid.RowSpan="6" Fill="White" HorizontalAlignment="Stretch"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Stretch" />
 
@@ -177,13 +177,13 @@
                             <TextBlock x:Name="textblock3" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="Radno vrijeme:" VerticalAlignment="Top" />
                         </Viewbox>
                         <Viewbox  Grid.Row="2" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="radnoVrijeme" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="radnoVrijeme" Foreground="#0081AF" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="4" Grid.Column="2"  Stretch="Uniform" HorizontalAlignment="Left">
                             <TextBlock x:Name="textblock4" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Status parkinga" VerticalAlignment="Top" />
                         </Viewbox>
                         <Viewbox  Grid.Row="5" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="statusParkinga" Foreground="White" HorizontalAlignment="Stretch"    TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="statusParkinga" Foreground="#0081AF" HorizontalAlignment="Stretch"    TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                     </Grid>
                     <Grid Grid.Column="3" >
@@ -231,6 +231,7 @@
 
                     </Grid>
                 </Grid>
+                <TextBlock x:Name="globalNaziv" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="29,13,0,0" TextWrapping="Wrap" Text="Odaberite parking" VerticalAlignment="Top" Height="53" Width="373"/>
 
 
 
