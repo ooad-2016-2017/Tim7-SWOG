@@ -102,6 +102,7 @@
     <Compile Include="Helper\INavigationService.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
+    <Compile Include="Model\Validator.cs" />
     <Compile Include="ViewModel\OwnerViewModel.cs" />
     <Compile Include="ViewModel\ParkingViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />

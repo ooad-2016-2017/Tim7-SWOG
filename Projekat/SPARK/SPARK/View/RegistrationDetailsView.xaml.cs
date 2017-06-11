@@ -60,8 +60,14 @@ namespace SPARK
         {
             try
             {
+                if (Model.Validator.RegistrationDetailsEmpty(TextBoxName.Text.ToString(), TextBoxSurname.Text.ToString(), TextBoxPassword.Password.ToString(), TextBoxUsername.Text.ToString(), TextBoxEmail.Text.ToString())){
+                    throw new IOException("Nijedno polje ne smije biti prazno!");
+                }
+                if (!Model.Validator.EmailIsValid(TextBoxEmail.Text.ToString())) throw new IOException("Neispravan Email format!");
                 using (var db = new SPARKDbContext())
                 {
+                    List<Azure.User> lista = await App.MobileService.GetTable<Azure.User>().ToListAsync();
+                    List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().ToListAsync();
                     var user = new User();
                     if (isUser)
                     {
@@ -73,9 +79,9 @@ namespace SPARK
                                Password = TextBoxPassword.Text.ToString(),
                                Email = TextBoxEmail.Text.ToString()
                            };*/
-                        List<Azure.User> lista = await App.MobileService.GetTable<Azure.User>().ToListAsync();
 
                         IMobileServiceTable<Azure.User> userTableObj = App.MobileService.GetTable<Azure.User>();
+
                         try
                         {
                             Azure.User obj = new Azure.User();
@@ -84,16 +90,16 @@ namespace SPARK
                             obj.id = Convert.ToString(lista.Count+1);
                             obj.Password = TextBoxPassword.Password.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
+                            if (lista.Find(x => x.Username == obj.Username) != null || listaVlasnika.Find(x => x.Username == obj.Username) != null) throw new IOException("Korisničko ime već postoji!");
                             obj.Email = TextBoxEmail.Text.ToString();
                             await userTableObj.InsertAsync(obj);
                             MessageDialog msgDialog = new MessageDialog("Uspješno ste se registrovali na SPARK.");
                             await msgDialog.ShowAsync();
                         }
-                        catch (Exception ex)
+                        catch (IOException ex)
                         {
-                            MessageDialog msgDialogError = new MessageDialog("Error : " +
-                            ex.ToString());
-                           // msgDialogError.ShowAsync();
+                            MessageDialog msgDialogError = new MessageDialog("Greška : " +ex.Message);
+                            await msgDialogError.ShowAsync();
                         }
 
                     }
@@ -107,7 +113,7 @@ namespace SPARK
                                 Password = TextBoxPassword.Text.ToString(),
                                 Email = TextBoxEmail.Text.ToString()
                             };*/
-                        List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().ToListAsync();
+                        
 
                         IMobileServiceTable<Azure.Owner> userTableObj = App.MobileService.GetTable<Azure.Owner>();
                         try
@@ -118,16 +124,17 @@ namespace SPARK
                             obj.id = Convert.ToString(listaVlasnika.Count + 1);
                             obj.Password = TextBoxPassword.Password.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
+                            if (lista.Find(x => x.Username == obj.Username) != null || listaVlasnika.Find(x => x.Username == obj.Username) != null) throw new IOException("Korisničko ime već postoji!");
                             obj.Email = TextBoxEmail.Text.ToString();
+                            
                             await userTableObj.InsertAsync(obj);
                             MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novog vlasnika.");
                             await msgDialog.ShowAsync();
                         }
-                        catch (Exception ex)
+                        catch (IOException ex)
                         {
-                            MessageDialog msgDialogError = new MessageDialog("Error : " +
-                            ex.ToString());
-                            // msgDialogError.ShowAsync();
+                            MessageDialog msgDialogError = new MessageDialog("Greška : " + ex.Message);
+                            await msgDialogError.ShowAsync();
                         }
                     }
 
@@ -142,12 +149,14 @@ namespace SPARK
 
 
             }
-            catch (Exception izuzetak)
+            catch (IOException ex)
             {
-                var dialog1 = new MessageDialog(izuzetak.Message);
-                dialog1.Commands.Add(new UICommand { Label = "Ok" });
-                await dialog1.ShowAsync();
+                MessageDialog msgDialogError = new MessageDialog("Greška : " + ex.Message);
+                msgDialogError.Commands.Add(new UICommand { Label = "Ok" });
+                await msgDialogError.ShowAsync();
+
             }
         }
+
     }
 }
