@@ -60,7 +60,7 @@
             <TextBlock Grid.Column="1" Grid.Row="5" Name="TextBlockUsername" Text="Username:"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="6" Name="TextBoxUsername" />
             <TextBlock Grid.Column="1" Grid.Row="7" Name="TextBlockPassword" Text="Password:"></TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="8" Name="TextBoxPassword"  />
+            <PasswordBox Grid.Column="1" Grid.Row="8" Name="TextBoxPassword"  />
             <TextBlock Grid.Column="1" Grid.Row="9" Name="TextBlockEmail" Text="e-mail:" ></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="10" Name="TextBoxEmail"  />
 

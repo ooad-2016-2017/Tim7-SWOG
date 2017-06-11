@@ -46,10 +46,6 @@ namespace SPARK
 
             myMap.MapServiceToken = "laUq6i4377dfOIVIHYEI~T_8vyIA3sznxgRSix8_JFw~AvZvd6to90gmNls6DvTMFLuiu_ekbhwYin_dmDs9lqGpvqgeaCCf6mtqNdXkVKmP";
             loadPinsToMap();
-            getUserLocation();
-            
-
-
         }
         private async void getUserLocation()
         {
@@ -68,6 +64,7 @@ namespace SPARK
                 mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 mapIcon1.Title = "VASA LOKACIJA";
                 myMap.MapElements.Add(mapIcon1);
+                myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = pos.Coordinate.Latitude , Longitude = pos.Coordinate.Longitude });
             }          
         }
 
@@ -161,7 +158,7 @@ namespace SPARK
         {
             myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = 43.865, Longitude = 18.4131 });
             myMap.ZoomLevel = 14;
-            //ovisno o validaciji treba ovdje da se postavi visibility redom: registrujSe, rezervisiMjesto, kupiKredite, izmjena
+            getUserLocation();
         }
         private void rezervisiMjesto_Loaded(object sender, RoutedEventArgs e)
         {
@@ -249,6 +246,28 @@ namespace SPARK
                 else statusParkinga.Text = "Slobodan";*/
             }
             UserViewModel.ClickedParking = choosenParking;
+        }
+
+        private void pretrazi(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (pretraga.QueryText == "")
+            {
+                myMap.ZoomLevel = 14;
+                getUserLocation();
+            }
+            else
+            {
+                //pretraga.QueryText;
+                foreach (Parking p in Parkings)
+                {
+                    if (p.Name.ToLower().Contains(pretraga.QueryText.ToLower()))
+                    {
+                        myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY });
+                        myMap.ZoomLevel = 16;
+                        break;
+                    }
+                }
+            }
         }
     }
 }

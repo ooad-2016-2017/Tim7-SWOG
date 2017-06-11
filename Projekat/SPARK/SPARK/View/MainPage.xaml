@@ -38,7 +38,7 @@
             <Button Name="LoginButton"  Grid.Row="1" Content="LOGIN" Background="#0084A7" Margin="0,5,0,5" Foreground="White" Loaded="LoginButton_Loaded" Click="LoginButton_Click"/>
             <Button Name="RegisterButton"  Grid.Row="2" Content="REGISTRUJ SE" Background="#3AAECB" Foreground="White" Margin="0,5,0,5" Loaded="RegisterButton_Loaded" Click="RegisterButton_Click"/>
         </Grid>
-        <Popup x:Name="ppup" IsOpen="False" IsLightDismissEnabled="True" Grid.Column="0" HorizontalAlignment="Stretch" Height="220"  >
+        <Popup x:Name="ppup" IsOpen="False" IsLightDismissEnabled="True" Grid.Column="0" HorizontalAlignment="Stretch" Height="220" >
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <!--<EdgeUIThemeTransition Edge="Left" />-->
@@ -51,7 +51,7 @@
                         <TextBlock Name="TextBlockUsername1" Text="Username:" Foreground="White" Margin="0,10,0,0"></TextBlock>
                         <TextBox Name="TextBoxUsername1" Background="White" />
                         <TextBlock Name="TextBlockPassword1" Text="Password:" Foreground="White" Margin="0,10,0,0"></TextBlock>
-                        <TextBox Name="TextBoxPassword1" Background="White" />
+                        <PasswordBox Name="TextBoxPassword1" Background="White"/>
                     </StackPanel>
                     <Button Name="PotvrdiButton" HorizontalAlignment="Center" Content="POTVRDI" Background="#3AAECB" Foreground="White" Margin="0,10,0,0" Loaded="PotvrdiButton_Loaded" Click="PotvrdiButton_Click"></Button>
                 </StackPanel>

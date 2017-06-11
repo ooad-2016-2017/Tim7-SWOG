@@ -82,11 +82,11 @@ namespace SPARK
                             obj.Name = TextBoxName.Text.ToString();
                             obj.Surname = TextBoxSurname.Text.ToString();
                             obj.id = Convert.ToString(lista.Count+1);
-                            obj.Password = TextBoxPassword.Text.ToString();
+                            obj.Password = TextBoxPassword.Password.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
                             obj.Email = TextBoxEmail.Text.ToString();
                             await userTableObj.InsertAsync(obj);
-                            MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novoi parking.");
+                            MessageDialog msgDialog = new MessageDialog("Uspješno ste se registrovali na SPARK.");
                             await msgDialog.ShowAsync();
                         }
                         catch (Exception ex)
@@ -116,7 +116,7 @@ namespace SPARK
                             obj.Name = TextBoxName.Text.ToString();
                             obj.Surname = TextBoxSurname.Text.ToString();
                             obj.id = Convert.ToString(listaVlasnika.Count + 1);
-                            obj.Password = TextBoxPassword.Text.ToString();
+                            obj.Password = TextBoxPassword.Password.ToString();
                             obj.Username = TextBoxUsername.Text.ToString();
                             obj.Email = TextBoxEmail.Text.ToString();
                             await userTableObj.InsertAsync(obj);
@@ -137,7 +137,7 @@ namespace SPARK
                 TextBoxName.Text = string.Empty;
                 TextBoxSurname.Text = string.Empty;
                 TextBoxUsername.Text = string.Empty;
-                TextBoxPassword.Text = string.Empty;
+                TextBoxPassword.Password = string.Empty;
                 TextBoxEmail.Text = string.Empty;
 
 

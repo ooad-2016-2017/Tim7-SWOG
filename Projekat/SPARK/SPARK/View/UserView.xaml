@@ -102,7 +102,7 @@
                                      Loaded="myMap_Loaded" MapElementClick="myMap_MapElementClick"
                              >
                     <Border Grid.Row="1" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="200" Margin="15,10,0,0" Height="32" MinHeight="30" Background="White">
-                        <SearchBox x:Name="pretraga" PlaceholderText="pretraga" Height="25" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" Foreground="Black" Margin="7,2,6,3" Padding="2,2,0,0" />
+                        <SearchBox x:Name="pretraga" PlaceholderText="pretraga" Height="25" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" Foreground="Black" Margin="7,2,6,3" Padding="2,2,0,0" KeyUp="pretrazi" />
                     </Border>
                 </maps:MapControl>
 
@@ -138,19 +138,19 @@
                             <TextBlock x:Name="cijenaPoSatuLabel" Foreground="White" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Cijena po satu:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="2" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="cijenaPoSatu" Foreground="#0081AF" HorizontalAlignment="Stretch"  Grid.Row="4" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="cijenaPoSatu" Foreground="#3DACCE" HorizontalAlignment="Stretch"  Grid.Row="4" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="3" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
                             <TextBlock x:Name="textBlockParkingZonaLabel" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Parking zona:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="4" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="parkingZona" Foreground="#0081AF" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="parkingZona" Foreground="#3DACCE" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="5" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
                             <TextBlock x:Name="textBlock2" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Adresa:" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="6" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="lokacija" Foreground="#0081AF" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="lokacija" Foreground="#3DACCE" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Rectangle Grid.RowSpan="6" Fill="White" HorizontalAlignment="Stretch"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Stretch" />
 
@@ -177,13 +177,13 @@
                             <TextBlock x:Name="textblock3" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="Radno vrijeme:" VerticalAlignment="Top" />
                         </Viewbox>
                         <Viewbox  Grid.Row="2" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="radnoVrijeme" Foreground="#0081AF" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="radnoVrijeme" Foreground="#3DACCE" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="4" Grid.Column="2"  Stretch="Uniform" HorizontalAlignment="Left">
                             <TextBlock x:Name="textblock4" Foreground="White" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="Status parkinga" VerticalAlignment="Top" />
                         </Viewbox>
                         <Viewbox  Grid.Row="5" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left">
-                            <TextBlock x:Name="statusParkinga" Foreground="#0081AF" HorizontalAlignment="Stretch"    TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="statusParkinga" Foreground="#3DACCE" HorizontalAlignment="Stretch"    TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
                         </Viewbox>
                     </Grid>
                     <Grid Grid.Column="3" >
@@ -231,7 +231,7 @@
 
                     </Grid>
                 </Grid>
-                <TextBlock x:Name="globalNaziv" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="29,13,0,0" TextWrapping="Wrap" Text="Odaberite parking" VerticalAlignment="Top" Height="53" Width="373"/>
+                <TextBlock x:Name="globalNaziv" FontSize="26" Foreground="White" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="53" Width="373"/>
 
 
 

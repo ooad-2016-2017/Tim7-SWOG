@@ -89,7 +89,7 @@ namespace SPARK
         private async void PotvrdiButton_Click(object sender, RoutedEventArgs e)
         {
             String Username = TextBoxUsername1.Text;
-            String Password = TextBoxPassword1.Text;
+            String Password = TextBoxPassword1.Password;
 
 
             IMobileServiceTable<Azure.User> userTableObj = App.MobileService.GetTable<Azure.User>();

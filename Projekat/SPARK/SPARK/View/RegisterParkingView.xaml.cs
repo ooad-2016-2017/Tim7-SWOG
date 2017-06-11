@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -50,6 +52,8 @@ namespace SPARK
             myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = 43.865, Longitude = 18.4131 });
             myMap.ZoomLevel = 12;
             lokacijaParkinga = new MapIcon { Location = myMap.Center, NormalizedAnchorPoint = new Point(0.5, 1.0), Title = "Lokacija Vašeg Parkinga", ZIndex = 0 };
+            lokacijaParkinga.Image =
+                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/crveniPinmali.png"));
             myMap.MapElements.Add(lokacijaParkinga);
         }
 
@@ -122,7 +126,7 @@ namespace SPARK
 
         private void PickLocationButton_Loaded(object sender, RoutedEventArgs e)
         {
-            PickLocationButton.Width = this.ActualWidth;
+            //PickLocationButton.Width = this.ActualWidth;
         }
         private void ReturnToMainPage()
         {
