@@ -50,7 +50,7 @@ namespace SPARK.View
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-
+  
             using (var db = new SPARKDbContext())
             {
                 int trazeni_id = 6;

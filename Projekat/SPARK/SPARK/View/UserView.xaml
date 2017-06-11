@@ -44,7 +44,7 @@
             x:Name="ParkingsListView"
             ItemTemplate="{StaticResource ParkingListTemplate}" 
             IsItemClickEnabled="True"
-            ItemsSource="{Binding Parkings}" >
+            ItemsSource="{Binding Parkings}" ItemClick="ParkingsListView_ItemClick" SelectionChanged="ParkingsListView_SelectionChanged" >
                 <ListView.Template>
                     <!--Rucno mjenjanje liste kako bi se dodali naslovi (headers) kolona
                 Na ovaj nacin se rucno mogu dodati neke kontrole u listu za specijalne liste.-->

@@ -269,5 +269,17 @@ namespace SPARK
                 }
             }
         }
+
+        private void ParkingsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            /*Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(View.ParkingDetailsView));*/
+        }
+
+        private void ParkingsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            Frame.Navigate(typeof(View.ParkingDetailsView), e.AddedItems[0]);
+        }
     }
 }

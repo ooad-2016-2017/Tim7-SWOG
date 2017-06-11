@@ -20,15 +20,12 @@
             <ColumnDefinition Width="0.3*" />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="2" Grid.Row="0" Background="#181C21" Foreground="Gray" Content="Uredi profil" FontSize="12" HorizontalAlignment="Right" HorizontalContentAlignment="Center" ></Button>
+        <Button Grid.Column="2" Grid.Row="0" Background="#FE4E47" Foreground="White" Content="Uredi profil" FontSize="12" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Click="Button_Click"></Button>
         <maps:MapControl x:Name="myMap" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                      ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
                                      Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
                                      DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
                                      Loaded="myMap_Loaded">
-            <Border Grid.Row="1" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="200" Margin="15,10,0,0" Height="32" MinHeight="30" Background="White">
-                <TextBox x:Name="pretraga" Text="pretraga" Foreground="LightGray" Margin="30,0,10,8" BorderBrush="White" Padding="10,0,0,0" />
-            </Border>
             <Button Width="20" Height="20" Grid.Column="0" BorderThickness="1" Grid.Row="1" Margin="20,15,0,200" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderBrush="White"/>
         </maps:MapControl>
 
@@ -44,15 +41,15 @@
             <Rectangle Grid.Row="1" Fill="#3DACCE" ></Rectangle>
             <RichTextBlock Grid.Row="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <Paragraph TextAlignment="Center">Broj slobodnih mijesta:</Paragraph>
-                <Paragraph TextAlignment="Center">14</Paragraph>
+                <Paragraph x:Name="brojSlobodnihMjesta" TextAlignment="Center"></Paragraph>
             </RichTextBlock>
             <RichTextBlock Grid.Row="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Paragraph TextAlignment="Center">Zaradjeni iznos (od pocetka mjeseca): </Paragraph>
-                <Paragraph TextAlignment="Center">1200</Paragraph>
+                <Paragraph x:Name="mjesecnaZarada" TextAlignment="Center"></Paragraph>
             </RichTextBlock>
             <RichTextBlock Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Paragraph TextAlignment="Center">Zaradjeni iznos (od pocetka radnog vremena):</Paragraph>
-                <Paragraph TextAlignment="Center">70</Paragraph>
+                <Paragraph x:Name="dnevnaZarada" TextAlignment="Center"></Paragraph>
             </RichTextBlock>
         </Grid>
         
@@ -149,7 +146,7 @@
                     <ColumnDefinition Width="10*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="urediParking" Grid.Row="5" Grid.Column="0" Click="urediParking_Click" Visibility="Visible"  Foreground="White" HorizontalContentAlignment="Center" Background="#181C21" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Button x:Name="urediParking" Grid.Row="5" Grid.Column="0" Click="urediParking_Click" Visibility="Visible"  Foreground="White" HorizontalContentAlignment="Center" Background="#FE4E47" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <Viewbox Stretch="Uniform" >
