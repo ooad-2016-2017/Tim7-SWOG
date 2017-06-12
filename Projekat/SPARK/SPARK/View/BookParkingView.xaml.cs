@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Microsoft.WindowsAzure.MobileServices;
+using Windows.UI.Core;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -90,7 +91,9 @@ namespace SPARK
                     i.TodaysProfit = i.TodaysProfit + hours * valuta;
                     i.NumTakenSpaces = i.NumTakenSpaces + 1;
                     await parkingTableObj.UpdateAsync(i);
-
+                    MessageDialog msgDialogError = new MessageDialog("Uspješno ste rezervisali parking!");
+                    await msgDialogError.ShowAsync();
+                    
 
                 }
                 catch (IOException ex)

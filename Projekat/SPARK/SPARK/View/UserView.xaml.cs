@@ -188,8 +188,11 @@ namespace SPARK
         }
         private void rezervisiMjesto_Click(object sender, RoutedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            Frame.Navigate(typeof(BookParkingView));
+            if (choosenParking != null)
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                Frame.Navigate(typeof(BookParkingView));
+            }
         }
         private void kupiKredite_Click(object sender, RoutedEventArgs e)
         {
