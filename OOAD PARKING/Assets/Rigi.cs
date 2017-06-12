@@ -16,12 +16,12 @@ public class Rigi : MonoBehaviour {
 	void Start () {
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		spos = transform.position;
-	}
-
-
-
+	}	
 	void OnCollisionEnter2D(Collision2D col){
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		//SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		SceneManager.LoadScene ("gameover");
+
 	}
+
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarBehaviour : MonoBehaviour {
 
@@ -46,9 +47,20 @@ public class CarBehaviour : MonoBehaviour {
 		{
 			transform.Rotate(Vector3.forward * -turnpower);
 		}
+		if (Input.GetKey(KeyCode.R))
+		{
+			SceneManager.LoadScene ("level1");
+		}
+
 	}
 	void OnCollisionEnter(Collision col){
-		transform.position = spos;
+
+	
+
+		//transform.position = spos;
+	}
+	IEnumerator cekaj(){
+		yield return new WaitForSeconds(5);
 	}
 
 }
