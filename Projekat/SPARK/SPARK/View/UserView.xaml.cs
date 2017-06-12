@@ -27,7 +27,6 @@ namespace SPARK
         public static int userType = -1;
         public static bool spremno=false;
         private Parking choosenParking = null;
-        public static Model.User trenutni; //OVDJE SAM DODAO Model PRIJE User JER MI JE IZBACIVALO ERRORRRRRRRR GRRRRR
         List<Parking> Parkings = new List<Parking>();
 
         public UserView()
@@ -127,15 +126,21 @@ namespace SPARK
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             var parameters = e.Parameter as Tuple<int, int>;
             userType = parameters.Item1;
             userID = parameters.Item2;
             spremno = true;
+
+
             if (userType == 1)
+            {
+                
                 Debug.WriteLine("Ulogovani ste kao vlasnik " + userID.ToString());
-            else if(userType == 0)
+                
+            }
+            else if (userType == 0)
             {
                 Debug.WriteLine("Ulogovani ste kao korisnik " + userID.ToString());
                 PinButton.Visibility = Visibility.Collapsed;

@@ -12,8 +12,10 @@ namespace SPARK.Model
         private string name;
         private int zone;
         private double price;
+
         private double coordX;
         private double coordY;
+
         private int capacity;
         private int numTakenSpaces;
         private KeyValuePair<DateTime, DateTime> workingHours;

@@ -73,6 +73,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -140,13 +141,14 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="4*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="urediParking" Grid.Row="5" Grid.Column="0" Click="urediParking_Click" Visibility="Visible"  Foreground="White" HorizontalContentAlignment="Center" Background="#FE4E47" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Button x:Name="urediParking" Grid.Row="5" Grid.Column="0" Click="izmjena_Click" Visibility="Visible"  Foreground="White" HorizontalContentAlignment="Center" Background="#FE4E47" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <Viewbox Stretch="Uniform" >

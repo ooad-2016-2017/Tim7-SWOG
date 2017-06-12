@@ -1,9 +1,9 @@
 ﻿<Page
-    x:Class="SPARK.RegisterParkingView"
+    x:Class="SPARK.View.EditParkingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SPARK"
-    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:local="using:SPARK.View"
+    xmlns:viewmodel="using:SPARK.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -23,8 +23,6 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
@@ -32,14 +30,9 @@
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
-            <maps:MapControl x:Name="myMap" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
-                                     ZoomLevel="{Binding ElementName=zoomSlider,Path=Value, Mode=TwoWay}"
-                                     Heading="{Binding ElementName=headingSlider,Path=Value, Mode=TwoWay}"
-                                     DesiredPitch="{Binding ElementName=desiredPitchSlider,Path=Value, Mode=TwoWay}" 
-                                     Loaded="myMap_Loaded" MapTapped="myMap_MapTapped"
-                                     />
+            
             <!-- Grid.Column="1" Grid.Row="2" Name="PickLocationButton"  Content="POTVRDI LOKACIJU" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" /-->
-            <Grid Grid.Column="3" Grid.Row="1">
+            <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0.1*" />
@@ -59,20 +52,20 @@
                     <RowDefinition Height="1.6*" />
                     <RowDefinition Height="0.5*" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Grid.Row="0"  Name="TextBlockName"  Text="Naziv parkinga:" ></TextBlock>
-                <TextBox Grid.Row="1"  Name="TextBoxName"></TextBox>
+                <TextBox Grid.Row="1"  Name="TextBoxName" Text="{Binding Path=p.Name}"></TextBox>
                 <TextBlock Grid.Row="2" Name="TextBlockParkingZone" Text="Parking zona:" ></TextBlock>
-                <TextBox Grid.Row="3"  Name="TextBoxParkingZone"></TextBox>
+                <TextBox Grid.Row="3"  Name="TextBoxParkingZone" Text="{Binding Path=p.Zone}"></TextBox>
                 <TextBlock Grid.Row="4" Name="TextBlockPrice" Text="Cijena po satu:" ></TextBlock>
                 <TextBox Grid.Row="5"  Name="TextBoxPrice" />
 
                 <TextBlock Grid.Row="0" Grid.Column="2"  Name="TextBlockCapacity"  Text="Kapacitet parkinga:" ></TextBlock>
-                <TextBox Grid.Row="1"  Grid.Column="2"  Name="TextBoxCapacity"></TextBox>
+                <TextBox Grid.Row="1"  Grid.Column="2"  Name="TextBoxCapacity" Text="{Binding Path=p.Capacity}"></TextBox>
                 <TextBlock Grid.Row="2" Grid.Column="2"  Name="TextBlockMinCredits" Text="Min broj kredita:" ></TextBlock>
-                <TextBox Grid.Row="3"  Grid.Column="2"  Name="TextBoxParkingMinCredits"></TextBox>
+                <TextBox Grid.Row="3"  Grid.Column="2"  Name="TextBoxParkingMinCredits" Text="{Binding Path=p.MinCredits}"></TextBox>
                 <TextBlock Grid.Row="4"  Grid.Column="2"  Name="TextBlockAddress" Text="Adresa:" ></TextBlock>
-                <TextBox Grid.Row="5"  Grid.Column="2"  Name="TextBoxAddress" />
+                <TextBox Grid.Row="5"  Grid.Column="2"  Name="TextBoxAddress" Text="{Binding Path=p.Address}"/>
 
                 <TextBlock Grid.Row="6" Name="TextBlockEmailWorkingHours" Grid.Column="0" Text="Radno vrijeme:" ></TextBlock>
                 <Viewbox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"  Stretch="Uniform">
@@ -85,9 +78,9 @@
                 <TextBlock x:Name="doo" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="9" TextWrapping="Wrap" Text="DO:" VerticalAlignment="Top" />
 
             </Grid>
-            <Button Grid.Column="3" Grid.Row="2" Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Click="SubmitButton_Click"/>
+            <Button Grid.Column="1" Grid.Row="2" Name="SubmitButton"  Content="POTVRDI" Background="#F94E49" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Click="SubmitButton_Click"/>
         </Grid>
-        
+
 
     </Grid>
 </Page>

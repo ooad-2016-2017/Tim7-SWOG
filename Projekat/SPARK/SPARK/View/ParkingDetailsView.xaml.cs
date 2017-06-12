@@ -113,7 +113,11 @@ namespace SPARK.View
         }
         private void izmjena_Click(object sender, RoutedEventArgs e)
         {
-            
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            EditParkingView.IDparkinga = Convert.ToString(p.Id);
+            ViewModel.ParkingViewModel.p = this.p;
+            Frame.Navigate(typeof(View.EditParkingView));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -76,7 +76,7 @@ namespace SPARK.ViewModel
                     korisnik.Email = u.Email;
                 }
             }
-            else
+            else if (UserView.userType == 1)
             {
                 List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().Where(x => x.id == Convert.ToString(UserView.userID)).ToListAsync();
                 if (listaVlasnika.Count != 0)

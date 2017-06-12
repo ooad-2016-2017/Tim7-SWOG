@@ -112,6 +112,9 @@
     <Compile Include="View\BuyCreditsView.xaml.cs">
       <DependentUpon>BuyCreditsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditParkingView.xaml.cs">
+      <DependentUpon>EditParkingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditUserView.xaml.cs">
       <DependentUpon>EditUserView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
     <Page Include="View\BuyCreditsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EditParkingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditUserView.xaml">
       <SubType>Designer</SubType>

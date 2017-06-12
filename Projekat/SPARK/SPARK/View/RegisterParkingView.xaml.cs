@@ -89,31 +89,64 @@ namespace SPARK
                     {
                         Azure.Parking obj = new Azure.Parking();
                         obj.Name = TextBoxName.Text.ToString();
-                        obj.Zone = Convert.ToInt32(TextBoxParkingZone.Text);
-                        obj.Zone = 2;
                         obj.id = Convert.ToString(lista.Count + 1); 
-                        obj.Price = Convert.ToDouble(TextBoxPrice.Text);
                         obj.Address = TextBoxAddress.Text;
                         obj.WorkingFrom= Convert.ToString(openingTime.Time.Hours) + ":" + Convert.ToString(openingTime.Time.Minutes);
                         obj.WorkingTo = Convert.ToString(closingTime.Time.Hours) + ":" + Convert.ToString(closingTime.Time.Minutes);
                         obj.CoordY = (double)lokacijaParkinga.Location.Position.Longitude;
                         obj.CoordX = (double)lokacijaParkinga.Location.Position.Latitude;
+
+                        try
+                        {
+                            obj.Capacity = Convert.ToInt32(TextBoxCapacity.Text.ToString());
+                        }catch(Exception ee)
+                        {
+                            throw new IOException("Neispravan kapacitet!");
+                        }
+                        try
+                        {
+                            obj.Zone = Convert.ToInt32(TextBoxParkingZone.Text);
+                        }
+                        catch (Exception ee)
+                        {
+                            throw new IOException("Neispravna zona!");
+                        }
+                        try
+                        {
+                            obj.MinCredits = Convert.ToInt32(TextBoxParkingMinCredits.Text.ToString());
+                        }
+                        catch (Exception ee)
+                        {
+                            throw new IOException("Neispravno napisan broj minimalnih kredita!");
+                        }
+                        try
+                        {
+                            obj.Price = Convert.ToDouble(TextBoxPrice.Text);
+                        }
+                        catch (Exception ee)
+                        {
+                            throw new IOException("Neispravno napisana cijena!");
+                        }
                         obj.id_vlasnika = userID;
+                        obj.NumTakenSpaces = 0;
+                        obj.TodaysProfit = 0;
+                        obj.MonthlyProfit = 0;
                         await userTableObj.InsertAsync(obj);
                         MessageDialog msgDialog = new MessageDialog("Uspješno ste unijeli novi parking.");
                         await msgDialog.ShowAsync();
                     }
-                    catch (Exception ex)
+                    catch (IOException ex)
                     {
-                        MessageDialog msgDialogError = new MessageDialog("Error : " +
-                        ex.ToString());
-                        // msgDialogError.ShowAsync();
+                        MessageDialog msgDialogError = new MessageDialog("Error : " +ex.Message);
+                        await msgDialogError.ShowAsync();
                     }
 
                     TextBoxName.Text = string.Empty;
                     TextBoxParkingZone.Text = string.Empty;
                     TextBoxPrice.Text = string.Empty;
                     TextBoxAddress.Text = string.Empty;
+                    TextBoxParkingMinCredits.Text = string.Empty;
+                    TextBoxCapacity.Text = string.Empty;
                 }
             }
             catch (Exception izuzetak)
