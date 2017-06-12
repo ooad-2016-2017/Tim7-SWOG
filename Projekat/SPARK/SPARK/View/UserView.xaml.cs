@@ -13,6 +13,8 @@ using System;
 using Windows.Foundation;
 using System.Diagnostics;
 using System.Linq;
+using Windows.Services.Maps;
+using Windows.UI;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,11 +28,21 @@ namespace SPARK
         public static int userID;
         public static int userType = -1;
         public static bool spremno=false;
-        private Parking choosenParking = null;
+        public static Parking choosenParking = null;
         List<Parking> Parkings = new List<Parking>();
+        BasicGeoposition lokacijaKorisnika;
+
+        public object ColorConverter { get; private set; }
+        public object Drawing { get; private set; }
 
         public UserView()
         {
+            userID=-1;
+            userType = -1;
+            spremno = false;
+            choosenParking = null;
+            Parkings = new List<Parking>();
+
             this.InitializeComponent();
             DataContext = new UserViewModel();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -63,7 +75,8 @@ namespace SPARK
                 mapIcon1.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 mapIcon1.Title = "VASA LOKACIJA";
                 myMap.MapElements.Add(mapIcon1);
-                myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = pos.Coordinate.Latitude , Longitude = pos.Coordinate.Longitude });
+                lokacijaKorisnika = new BasicGeoposition() { Latitude = pos.Coordinate.Latitude, Longitude = pos.Coordinate.Longitude };
+                myMap.Center = new Geopoint(lokacijaKorisnika);
             }          
         }
 
@@ -133,7 +146,7 @@ namespace SPARK
             userID = parameters.Item2;
             spremno = true;
 
-
+            
             if (userType == 1)
             {
                 
@@ -194,6 +207,7 @@ namespace SPARK
 
         private void EditProfile_Click(object sender, RoutedEventArgs e)
         {
+            DataContext = new UserViewModel();
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(View.EditUserView));
 
@@ -226,8 +240,7 @@ namespace SPARK
                         cijenaPoSatu.Text = Convert.ToString(choosenParking.Price);
                         parkingZona.Text = Convert.ToString(choosenParking.Zone);
                         lokacija.Text = Convert.ToString(choosenParking.Address);
-                        string vrijeme = Convert.ToString(choosenParking.WorkingHours);
-                        radnoVrijeme.Text = vrijeme.Substring(11,5) + " AM - " + vrijeme.Substring(34, 5) + " PM";
+                        radnoVrijeme.Text = choosenParking.WorkingHours.Key.Hour+":"+ choosenParking.WorkingHours.Key.Minute + "  - " + choosenParking.WorkingHours.Value.Hour + ":" + choosenParking.WorkingHours.Value.Minute ;
                         if (choosenParking.Capacity == choosenParking.NumTakenSpaces)
                         {
                             statusParkinga.Text = "Zauzet";
@@ -241,6 +254,7 @@ namespace SPARK
                         break;
                     }
                 }
+
                 //Debug.WriteLine(kliknuti.Name + kliknuti.Id);
                 /*cijenaPoSatu.Text = Convert.ToString(choosenParking.Price);
                 parkingZona.Text = Convert.ToString(choosenParking.Zone);
@@ -251,6 +265,7 @@ namespace SPARK
                 else statusParkinga.Text = "Slobodan";*/
             }
             UserViewModel.ClickedParking = choosenParking;
+            ShowRouteOnMap(lokacijaKorisnika, new BasicGeoposition { Longitude = choosenParking.CoordY, Latitude = choosenParking.CoordX });
         }
 
         private void pretrazi(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
@@ -267,7 +282,7 @@ namespace SPARK
                 {
                     if (p.Name.ToLower().Contains(pretraga.QueryText.ToLower()))
                     {
-                        myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = p.CoordX, Longitude = p.CoordY });
+                        myMap.Center = new Geopoint(new BasicGeoposition() { Latitude = p.CoordY, Longitude = p.CoordX });
                         myMap.ZoomLevel = 16;
                         break;
                     }
@@ -285,6 +300,33 @@ namespace SPARK
         {
             Frame rootFrame = Window.Current.Content as Frame;
             Frame.Navigate(typeof(View.ParkingDetailsView), e.AddedItems[0]);
+        }
+
+        private async void ShowRouteOnMap(BasicGeoposition l1, BasicGeoposition l2)
+        {
+            BasicGeoposition startLocation = l1;
+            BasicGeoposition endLocation = l2;
+
+            MapRouteFinderResult routeResult =
+                  await MapRouteFinder.GetDrivingRouteAsync(
+                  new Geopoint(startLocation),
+                  new Geopoint(endLocation),
+                  MapRouteOptimization.Time,
+                  MapRouteRestrictions.None);
+
+            if (routeResult.Status == MapRouteFinderStatus.Success)
+            {
+                MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
+                viewOfRoute.RouteColor = Colors.DodgerBlue;
+                viewOfRoute.OutlineColor = Colors.White;
+                myMap.Routes.Clear();
+                myMap.Routes.Add(viewOfRoute);
+                
+                await myMap.TrySetViewBoundsAsync(
+                      routeResult.Route.BoundingBox,
+                      null,
+                      Windows.UI.Xaml.Controls.Maps.MapAnimationKind.None);
+            }
         }
     }
 }

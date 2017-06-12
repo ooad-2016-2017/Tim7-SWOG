@@ -10,7 +10,7 @@ using SPARK.Helper;
 namespace SPARK.ViewModel
 {
      class UserViewModel {
-        //U view Biniding Korpa.Stavke prvo trazi Korpa propertz a zatim pristupa njegovom Stavke property
+
         public static User korisnik { get; set; }
         //Servis za navigaciju koji će preći na druge forme po potrebi
         public INavigationService NavigationService { get; set; }
@@ -66,7 +66,8 @@ namespace SPARK.ViewModel
                 List<Azure.User> lista = await App.MobileService.GetTable<Azure.User>().Where(x => x.id == Convert.ToString(UserView.userID)).ToListAsync();
                 if(lista.Count != 0)
                 {
-                    Azure.User u = lista.Find(x => x.id== Convert.ToString(UserView.userID));
+                    Azure.User u = new Azure.User();
+                    u = lista.Find(x => x.id== Convert.ToString(UserView.userID));
                     korisnik = new User();
                     korisnik.Name = u.Name;
                     korisnik.Surname = u.Surname;
@@ -81,7 +82,8 @@ namespace SPARK.ViewModel
                 List<Azure.Owner> listaVlasnika = await App.MobileService.GetTable<Azure.Owner>().Where(x => x.id == Convert.ToString(UserView.userID)).ToListAsync();
                 if (listaVlasnika.Count != 0)
                 {
-                    Azure.Owner u = listaVlasnika.Find(x => x.id == Convert.ToString(UserView.userID));
+                    Azure.Owner u = new Azure.Owner();
+                    u = listaVlasnika.Find(x => x.id == Convert.ToString(UserView.userID));
                     korisnik = new Owner();
                     korisnik.Name = u.Name;
                     korisnik.Surname = u.Surname;
@@ -108,6 +110,7 @@ namespace SPARK.ViewModel
                             novi.MinCredits = Convert.ToInt32(p.MonthlyProfit);
                             novi.NumTakenSpaces = p.NumTakenSpaces;
                             novi.Price= Convert.ToInt32(p.Price);
+                            novi.MonthlyProfit= Convert.ToInt32(p.MonthlyProfit);
                             novi.TodaysProfit= Convert.ToInt32(p.TodaysProfit);
                             novi.WorkingHours = new KeyValuePair<DateTime, DateTime>(Convert.ToDateTime(p.WorkingFrom), Convert.ToDateTime(p.WorkingTo));
                             novi.Zone = p.Zone;

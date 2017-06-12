@@ -47,11 +47,12 @@ namespace SPARK.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             p = e.Parameter as Parking;
+
+
             cijenaPoSatu.Text = Convert.ToString(p.Price);
             parkingZona.Text = Convert.ToString(p.Zone);
             lokacija.Text = Convert.ToString(p.Address);
-            string vrijeme = Convert.ToString(p.WorkingHours);
-            radnoVrijeme.Text = vrijeme.Substring(11, 5) + " AM - " + vrijeme.Substring(34, 5) + " PM";
+            radnoVrijeme.Text = p.WorkingHours.Key.Hour + ":" + p.WorkingHours.Key.Minute + "  - " + p.WorkingHours.Value.Hour + ":" + p.WorkingHours.Value.Minute;
             if (p.Capacity == p.NumTakenSpaces)
             {
                 statusParkinga.Text = "Zauzet";

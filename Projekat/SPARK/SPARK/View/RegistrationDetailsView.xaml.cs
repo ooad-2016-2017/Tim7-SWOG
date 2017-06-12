@@ -89,6 +89,7 @@ namespace SPARK
                             obj.Surname = TextBoxSurname.Text.ToString();
                             obj.id = Convert.ToString(lista.Count+1);
                             obj.Password = TextBoxPassword.Password.ToString();
+                            obj.stanje_kredita = "50";
                             obj.Username = TextBoxUsername.Text.ToString();
                             if (lista.Find(x => x.Username == obj.Username) != null || listaVlasnika.Find(x => x.Username == obj.Username) != null) throw new IOException("Korisničko ime već postoji!");
                             obj.Email = TextBoxEmail.Text.ToString();

@@ -69,10 +69,10 @@
 
                 <TextBlock Grid.Row="6" Name="TextBlockEmailWorkingHours" Grid.Column="0" Text="Radno vrijeme:" ></TextBlock>
                 <Viewbox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"  Stretch="Uniform">
-                    <TimePicker   Name="openingTime"  Grid.RowSpan="1"/>
+                    <TimePicker ClockIdentifier="24HourClock"  Name="openingTime"  Grid.RowSpan="1"/>
                 </Viewbox>
                 <Viewbox Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Stretch="Uniform">
-                    <TimePicker  Name="closingTime"  />
+                    <TimePicker ClockIdentifier="24HourClock" Name="closingTime"  />
                 </Viewbox>
                 <TextBlock x:Name="od" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="7" TextWrapping="Wrap" Text="OD:" VerticalAlignment="Top" />
                 <TextBlock x:Name="doo" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="9" TextWrapping="Wrap" Text="DO:" VerticalAlignment="Top" />

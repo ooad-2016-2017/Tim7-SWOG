@@ -40,5 +40,11 @@ namespace SPARK.Azure
             set;
 
         }
+        public string stanje_kredita
+        {
+            get;
+            set;
+
+        }
     }
 }

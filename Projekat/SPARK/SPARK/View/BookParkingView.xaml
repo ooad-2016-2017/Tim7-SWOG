@@ -24,10 +24,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BookParkingButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  Background="#181C21" Foreground="#FFFFFA">
+        <Button x:Name="BookParkingButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4"  Background="#181C21" Foreground="#FFFFFA" Click="BookParkingButton_Click">
             <Button.ContentTemplate>
                 <DataTemplate>
                     <Viewbox Stretch="Uniform">
@@ -37,7 +38,7 @@
             </Button.ContentTemplate>
         </Button>
 
-        <Button x:Name="CancelButton" Click="CancelButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Background="#0081AF" Foreground="#FFFFFA">
+        <Button x:Name="CancelButton" Click="CancelButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" Background="#0081AF" Foreground="#FFFFFA">
             <Button.ContentTemplate>
                 <DataTemplate>
                     <Viewbox Stretch="Uniform">
@@ -48,16 +49,22 @@
         </Button>
         
         <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
-            <DatePicker  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0"  ></DatePicker>
+            <DatePicker Name="OdDate"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0"  DateChanged="OdDate_DateChanged"></DatePicker>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Stretch">
+            <TimePicker  Name="OdTime"  ClockIdentifier="24HourClock" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0" TimeChanged="OdTime_TimeChanged" ></TimePicker>
         </Viewbox>
         <Viewbox Grid.Row="3" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
-            <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0"></DatePicker>
+            <DatePicker  Name="DoDate"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0" DateChanged="OdDate_DateChanged"></DatePicker>
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
+        <Viewbox Grid.Row="3" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Stretch">
+            <TimePicker  Name="DoTime"  ClockIdentifier="24HourClock"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0081AF" BorderThickness="0" TimeChanged="OdTime_TimeChanged"  ></TimePicker>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Stretch="Uniform" HorizontalAlignment="Stretch">
             <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="Potrebno kredita za rezervaciju: " Foreground="#FFFFFA" ></TextBlock>
         </Viewbox>
-        <Viewbox Grid.Row="6" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Stretch">
-            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="11 SPARK KREDITA" Foreground="#FFFFFA" ></TextBlock>
+        <Viewbox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"  Stretch="Uniform" HorizontalAlignment="Stretch">
+            <TextBlock Name="numberOfCredits" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="0 SPARK KREDITA" Foreground="#FFFFFA" ></TextBlock>
         </Viewbox>
     </Grid>
 </Page>

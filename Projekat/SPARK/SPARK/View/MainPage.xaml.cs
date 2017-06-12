@@ -29,6 +29,7 @@ namespace SPARK
     {
         public MainPage()
         {
+            
             this.InitializeComponent();
             myMap.MapServiceToken = "laUq6i4377dfOIVIHYEI~T_8vyIA3sznxgRSix8_JFw~AvZvd6to90gmNls6DvTMFLuiu_ekbhwYin_dmDs9lqGpvqgeaCCf6mtqNdXkVKmP";
         }
@@ -170,5 +171,7 @@ namespace SPARK
                 }
             }*/
         }
+
+        
     }
 }

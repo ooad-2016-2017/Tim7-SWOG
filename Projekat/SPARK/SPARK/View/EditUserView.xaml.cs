@@ -28,9 +28,11 @@ namespace SPARK.View
     /// </summary>
     public sealed partial class EditUserView : Page
     {
+        int usr = -1;
 
         public EditUserView()
         {
+            usr = UserView.userID;
             DataContext = new UserViewModel();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
@@ -72,7 +74,7 @@ namespace SPARK.View
                         try
                         {
                             
-                            Azure.User obj = lista.Find(x => x.id == Convert.ToString(UserView.userID));
+                            Azure.User obj = lista.Find(x => x.id == Convert.ToString(usr));
                         //    await userTableObj.DeleteAsync(obj);
                             obj.Name = TextBoxName.Text.ToString();
                             obj.Surname = TextBoxSurname.Text.ToString();
